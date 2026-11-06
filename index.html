@@ -81,7 +81,7 @@
             position: relative;
         }
 
-        /* Canvas do Universo Integrado no Fundo Fixo */
+        /* Canvas do Universo com Partículas, Constelações e Rasto */
         #canvas-particulas {
             position: fixed;
             top: 0;
@@ -135,6 +135,19 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
         h1 { color: var(--h1-color); font-size: 2.2rem; margin-bottom: 16px; font-family: 'Philosopher', serif; }
+        
+        /* Efeito de Cursor Piscar no Estilo Terminal para o Título */
+        #saudacao-titulo::after {
+            content: "|";
+            animation: piscarCursor 0.8s infinite;
+            color: var(--h1-color);
+            font-weight: normal;
+        }
+        @keyframes piscarCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         h2 { color: var(--h2-color); font-size: 1.4rem; margin-bottom: 12px; font-family: 'Philosopher', serif; }
         p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; font-size: 1.05rem; }
 
@@ -307,7 +320,7 @@
 </head>
 <body>
 
-    <!-- Fundo do Universo Dinâmico com Canvas Ativo -->
+    <!-- Fundo do Universo com Canvas, Partículas e Rasto de Luz -->
     <canvas id="canvas-particulas"></canvas>
 
     <header>
@@ -333,7 +346,7 @@
                 <span class="pulse-dot"></span> <span id="status-texto">Disponível para Estágio em TI (Tarde)</span> 🔄
             </div>
             
-            <h1 id="saudacao-titulo">Seja bem-vindo ao meu portfólio</h1>
+            <h1 id="saudacao-titulo"></h1>
             
             <div class="terminal-box">
                 <div class="terminal-linha"><span class="terminal-prompt">vitor@dev:~$</span> git status --profile</div>
@@ -520,7 +533,7 @@
         <p id="sessao-timer" style="font-size: 0.85rem; color: #38bdf8;">Tempo na página: 0s</p>
     </footer>
 
-    <!-- Lógica JavaScript Dinâmica -->
+    <!-- Lógica JavaScript Dinâmica Completa -->
     <script>
         let audioAtivo = true;
         let audioCtx = null;
@@ -565,7 +578,7 @@
             mostrarToast("🔄 Status atualizado com sucesso!");
         }
 
-        /* --- CANVAS DO UNIVERSO COM FUNDO CÓSMICO E REAÇÃO AO RATO --- */
+        /* --- CANVAS DO UNIVERSO, PARTÍCULAS E RASTO DO RATO --- */
         const canvasPart = document.getElementById('canvas-particulas');
         const ctxPart = canvasPart.getContext('2d');
         let estrelas = [];
@@ -574,10 +587,15 @@
 
         let mouseX = -1000;
         let mouseY = -1000;
+        let rastoRato = [];
 
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+
+            // Adiciona partículas ao rasto de luz do rato
+            rastoRato.push({ x: mouseX, y: mouseY, alpha: 1, raio: Math.random() * 3 + 1 });
+            if (rastoRato.length > 25) rastoRato.shift();
         });
 
         function redimensionarCanvas() {
@@ -602,7 +620,7 @@
             ctxPart.clearRect(0, 0, canvasPart.width, canvasPart.height);
             const isClaro = document.documentElement.classList.contains('claro');
             
-            // Fundo Gradiente Cósmico Desenhado Diretamente no Canvas
+            // Gradiente Cósmico de Fundo
             const gradFundo = ctxPart.createLinearGradient(0, 0, canvasPart.width, canvasPart.height);
             if (isClaro) {
                 gradFundo.addColorStop(0, '#f1f5f9');
@@ -616,7 +634,7 @@
             ctxPart.fillStyle = gradFundo;
             ctxPart.fillRect(0, 0, canvasPart.width, canvasPart.height);
 
-            // Ondas energéticas do espaço-tempo fluidas
+            // Ondas energéticas do espaço-tempo
             anguloNebulosa += 0.02;
             ctxPart.lineWidth = 1;
             for (let i = 0; i < 3; i++) {
@@ -630,7 +648,18 @@
                 ctxPart.stroke();
             }
 
-            // Desenhar estrelas e constelações reativas ao rato
+            // Desenhar rasto de luz do rato
+            rastoRato.forEach((p) => {
+                p.alpha -= 0.04;
+                if (p.alpha > 0) {
+                    ctxPart.beginPath();
+                    ctxPart.arc(p.x, p.y, p.raio, 0, Math.PI * 2);
+                    ctxPart.fillStyle = isClaro ? `rgba(29, 78, 216, ${p.alpha * 0.7})` : `rgba(0, 245, 212, ${p.alpha})`;
+                    ctxPart.fill();
+                }
+            });
+
+            // Estrelas e constelações reativas ao rato
             for (let i = 0; i < estrelas.length; i++) {
                 let e = estrelas[i];
                 e.x += e.vx;
@@ -639,7 +668,6 @@
                 if (e.x < 0 || e.x > canvasPart.width) e.vx *= -1;
                 if (e.y < 0 || e.y > canvasPart.height) e.vy *= -1;
 
-                // Gravidade cósmica ao aproximar o rato
                 let distMouse = Math.hypot(mouseX - e.x, mouseY - e.y);
                 if (distMouse < 160) {
                     let angulo = Math.atan2(e.y - mouseY, e.x - mouseX);
@@ -652,7 +680,6 @@
                 ctxPart.fillStyle = isClaro ? `rgba(30, 64, 175, ${e.alpha})` : `rgba(0, 245, 212, ${e.alpha})`;
                 ctxPart.fill();
 
-                // Conexões estelares entre pontos vizinhos
                 for (let j = i + 1; j < estrelas.length; j++) {
                     let e2 = estrelas[j];
                     let dist = Math.hypot(e.x - e2.x, e.y - e2.y);
@@ -665,7 +692,6 @@
                     }
                 }
 
-                // Linha de conexão interativa direta ao cursor do rato
                 if (distMouse < 110) {
                     ctxPart.beginPath();
                     ctxPart.moveTo(e.x, e.y);
@@ -677,6 +703,21 @@
             requestAnimationFrame(animarUniverso);
         }
         animarUniverso();
+
+        /* --- EFEITO DE DIGITAÇÃO AUTOMÁTICA (TIPO TERMINAL GITHUB) --- */
+        const textoDigitado = "Seja bem-vindo ao meu portfólio cósmico";
+        let indiceLetra = 0;
+
+        function iniciarDigitacao() {
+            const elementoTitulo = document.getElementById('saudacao-titulo');
+            if (!elementoTitulo) return;
+            
+            if (indiceLetra < textoDigitado.length) {
+                elementoTitulo.textContent += textoDigitado.charAt(indiceLetra);
+                indiceLetra++;
+                setTimeout(iniciarDigitacao, 55);
+            }
+        }
 
         /* --- EFEITO 3D TILT E SPOTLIGHT NOS CARDS --- */
         document.addEventListener('mousemove', (e) => {
@@ -962,13 +1003,8 @@
         }, 1000);
 
         window.addEventListener('DOMContentLoaded', () => {
-            const hora = new Date().getHours();
-            let saudacao = "Bom dia!";
-            if (hora >= 12 && hora < 18) saudacao = "Boa tarde!";
-            else if (hora >= 18 || hora < 5) saudacao = "Boa noite!";
-
-            const tituloSaudacao = document.getElementById('saudacao-titulo');
-            if (tituloSaudacao) tituloSaudacao.textContent = `${saudacao} Seja bem-vindo ao meu portfólio`;
+            // Inicia o efeito de digitação automática no título
+            setTimeout(iniciarDigitacao, 300);
 
             const temaSalvo = localStorage.getItem('tema');
             if (temaSalvo === 'claro') {
