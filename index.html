@@ -12,14 +12,14 @@
         :root {
             --text-color: #e2e8f0;
             --text-muted: #94a3b8;
-            --header-bg: rgba(13, 14, 21, 0.85);
+            --header-bg: rgba(13, 14, 21, 0.95);
             --header-border: rgba(138, 43, 226, 0.5);
             --nav-link: #38bdf8;
             --nav-hover: #ffffff;
             --h1-color: #00f5d4;
             --h2-color: #ffd166;
             --card-border: rgba(138, 43, 226, 0.6);
-            --card-bg: transparent; /* 100% transparente */
+            --card-bg: transparent !important; 
             --badge-bg: rgba(0, 245, 212, 0.08);
             --badge-color: #00f5d4;
             --badge-border: #00f5d4;
@@ -28,9 +28,9 @@
             --btn-bg: #8a2be2;
             --btn-text: #ffffff;
             --project-title-color: #ff5c8a;
-            --spotlight-color: rgba(138, 43, 226, 0.2);
+            --spotlight-color: rgba(138, 43, 226, 0.28); /* Brilho em Roxo/Violeta néon nos cards */
             --card-shadow-hover: 0 20px 40px rgba(138, 43, 226, 0.35);
-            --terminal-bg: rgba(9, 10, 15, 0.85);
+            --terminal-bg: rgba(9, 10, 15, 0.95);
             --terminal-text: #00f5d4;
             --terminal-body-color: #e2e8f0;
         }
@@ -38,26 +38,26 @@
         html.claro {
             --text-color: #0f172a;               
             --text-muted: #334155;               
-            --header-bg: rgba(255, 255, 255, 0.85);                
+            --header-bg: rgba(255, 255, 255, 0.95);                
             --header-text: #0f172a;              
-            --header-border: rgba(100, 116, 139, 0.4);            
+            --header-border: rgba(30, 64, 175, 0.3);            
             --nav-link: #1d4ed8;                 
             --nav-hover: #0f172a;                
-            --h1-color: #1e40af;                 
+            --h1-color: #1d4ed8;                 
             --h2-color: #c2410c;                 
-            --card-border: rgba(100, 116, 139, 0.5);              
-            --card-bg: transparent; /* 100% transparente no tema claro */
-            --badge-bg: #eff6ff;                 
-            --badge-color: #1d4ed8;              
-            --badge-border: #bfdbfe;             
-            --input-bg: rgba(255, 255, 255, 0.85);                 
-            --input-border: #64748b;             
-            --btn-bg: #0f172a;                   
+            --card-border: rgba(29, 78, 216, 0.4);              
+            --card-bg: transparent !important; 
+            --badge-bg: #dbeafe;                 
+            --badge-color: #1e40af;              
+            --badge-border: #93c5fd;             
+            --input-bg: rgba(255, 255, 255, 0.9);                 
+            --input-border: #3b82f6;             
+            --btn-bg: #1d4ed8;                   
             --btn-text: #ffffff;                 
-            --project-title-color: #be123c;      
-            --spotlight-color: rgba(29, 78, 216, 0.1);
-            --card-shadow-hover: 0 15px 35px rgba(15, 23, 42, 0.12);
-            --terminal-bg: rgba(255, 255, 255, 0.9);               
+            --project-title-color: #e11d48;      
+            --spotlight-color: rgba(29, 78, 216, 0.14); /* Brilho em Azul no tema claro */
+            --card-shadow-hover: 0 15px 35px rgba(15, 23, 42, 0.15);
+            --terminal-bg: rgba(241, 245, 249, 0.95);               
             --terminal-text: #0284c7;
             --terminal-body-color: #0f172a;       
         }
@@ -70,47 +70,48 @@
             font-family: 'Inter', sans-serif;
             transition: color 0.3s ease;
             overflow-x: hidden;
+            width: 100%;
         }
 
         body {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding-top: 90px;
-            padding-bottom: 90px;
+            padding-top: 85px;
+            padding-bottom: 95px;
             position: relative;
         }
 
-        /* Canvas do Universo com Partículas, Constelações e Rasto */
         #canvas-particulas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
         }
 
         header {
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 2rem; background-color: var(--header-bg);
+            padding: 0.8rem 1.5rem; background-color: var(--header-bg);
             border-bottom: 2px solid var(--header-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            z-index: 1000; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 9999; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .logo {
             color: var(--header-text); font-weight: bold; margin: 0;
-            font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1.25rem; user-select: none;
+            font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1.1rem; user-select: none;
         }
         html.claro .logo { color: #1e40af; }
 
-        nav { display: flex; gap: 24px; align-items: center; }
+        nav { display: flex; gap: 16px; align-items: center; }
         nav a {
             position: relative; text-decoration: none; color: var(--nav-link);
-            font-weight: 600; font-size: 1.05rem; padding-bottom: 6px; cursor: pointer; transition: color 0.3s ease;
+            font-weight: 600; font-size: 0.92rem; padding: 6px 4px; cursor: pointer; transition: color 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         nav a::after {
             content: ""; position: absolute; left: 0; bottom: 0; width: 0%; height: 2px;
@@ -119,86 +120,89 @@
         nav a:hover::after, nav a.ativo::after { width: 100%; }
         nav a:hover, nav a.ativo { color: var(--nav-hover) !important; }
 
-        .controles-topo { display: flex; gap: 10px; align-items: center; }
+        .controles-topo { display: flex; gap: 8px; align-items: center; }
         .btn-acao-topo {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 8px 14px; font-family: inherit; font-size: 13px; font-weight: bold;
-            border-radius: 25px; cursor: pointer; background-color: rgba(255,255,255,0.08);
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            padding: 6px 10px; font-family: inherit; font-size: 12px; font-weight: bold;
+            border-radius: 20px; cursor: pointer; background-color: rgba(255,255,255,0.08);
             color: var(--header-text); border: 2px solid var(--header-border); backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;
         }
         .btn-acao-topo:hover { opacity: 0.85; background-color: rgba(255,255,255,0.15); }
 
-        main { padding: 2.5rem 2rem; max-width: 950px; margin: 0 auto; width: 100%; flex: 1; z-index: 2; position: relative; }
+        main { padding: 2rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; flex: 1; z-index: 5; position: relative; }
         .view { display: none; animation: fadeIn 0.3s ease-in-out; }
         .view.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { color: var(--h1-color); font-size: 2.2rem; margin-bottom: 16px; font-family: 'Philosopher', serif; }
+        h1 { color: var(--h1-color); font-size: 1.8rem; margin-bottom: 14px; font-family: 'Philosopher', serif; line-height: 1.25; }
+        h2 { color: var(--h2-color); font-size: 1.25rem; margin-bottom: 10px; font-family: 'Philosopher', serif; }
+        p { color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; font-size: 0.98rem; }
+
+        .terminal-box {
+            background-color: var(--terminal-bg); border: 2px solid var(--h1-color); border-radius: 10px;
+            padding: 12px 14px; font-family: 'Share Tech Mono', monospace; font-size: 0.88rem;
+            color: var(--terminal-text); margin-bottom: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            word-break: break-word; z-index: 5; position: relative;
+        }
+        .terminal-linha { margin-bottom: 4px; }
+        .terminal-prompt { color: var(--h2-color); }
         
-        /* Efeito de Cursor Piscar no Estilo Terminal para o Título */
-        #saudacao-titulo::after {
+        .cursor-terminal::after {
             content: "|";
             animation: piscarCursor 0.8s infinite;
-            color: var(--h1-color);
-            font-weight: normal;
+            color: var(--terminal-text);
         }
         @keyframes piscarCursor {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
 
-        h2 { color: var(--h2-color); font-size: 1.4rem; margin-bottom: 12px; font-family: 'Philosopher', serif; }
-        p { color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; font-size: 1.05rem; }
-
-        .terminal-box {
-            background-color: var(--terminal-bg); border: 2px solid var(--h1-color); border-radius: 12px;
-            padding: 14px 18px; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem;
-            color: var(--terminal-text); margin-bottom: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-        }
-        .terminal-linha { margin-bottom: 4px; }
-        .terminal-prompt { color: var(--h2-color); }
         .terminal-texto-principal { color: var(--terminal-body-color); margin-top: 4px; }
 
         .status-badge {
             display: inline-flex; align-items: center; gap: 8px; background: transparent;
-            border: 2px solid #ff3366; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
-            color: #ffd166; margin-bottom: 15px; cursor: pointer; transition: transform 0.2s;
-            box-shadow: 0 0 10px rgba(255, 51, 102, 0.2); user-select: none;
+            border: 2px solid #ff3366; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+            color: #ffd166; margin-bottom: 14px; cursor: pointer; transition: transform 0.2s;
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.2); user-select: none; z-index: 5; position: relative;
         }
         .status-badge:hover { transform: scale(1.02); background: rgba(255, 51, 102, 0.05); }
         .pulse-dot {
-            width: 8px; height: 8px; background-color: #ff3366; border-radius: 50%;
+            width: 7px; height: 7px; background-color: #ff3366; border-radius: 50%;
             animation: pulse 1.5s infinite; box-shadow: 0 0 8px #ff3366;
         }
         @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.8; } }
 
-        /* --- CARDS 100% TRANSPARENTES --- */
+        /* --- CARDS 100% TRANSPARENTES COM EFEITO SPOTLIGHT E TILT --- */
         .card, .projeto-card {
-            background-color: var(--card-bg) !important; padding: 26px; margin-bottom: 22px;
-            border-radius: 16px; border: 2px solid var(--card-border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden;
-            transform-style: preserve-3d; perspective: 1000px; transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            z-index: 2;
+            background-color: var(--card-bg) !important; 
+            padding: 20px; margin-bottom: 18px;
+            border-radius: 14px; border: 2px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+            position: relative; overflow: hidden;
+            transform-style: preserve-3d; perspective: 1000px; 
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            z-index: 5;
         }
 
         .card::before, .projeto-card::before {
             content: ''; position: absolute; top: var(--y, 0); left: var(--x, 0);
-            transform: translate(-50%, -50%); width: 380px; height: 380px;
+            transform: translate(-50%, -50%); width: 320px; height: 320px;
             background: radial-gradient(circle, var(--spotlight-color), transparent 70%);
             opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 1;
         }
-        .card:hover::before, .projeto-card:hover::before { opacity: 1; }
+        .card:hover::before, .projeto-card:hover::before,
+        .card.ativo-touch::before, .projeto-card.ativo-touch::before { opacity: 1; }
+        
         .card:hover, .projeto-card:hover { border-color: var(--h1-color); box-shadow: var(--card-shadow-hover); }
 
-        .foto-perfil { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--header-border); margin-bottom: 20px; }
+        .foto-perfil { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--header-border); margin-bottom: 16px; }
         
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 15px; }
-        .skill-item { background-color: var(--badge-bg); color: var(--badge-color); border: 1px solid var(--badge-border); padding: 12px 16px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; z-index: 2; position: relative; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 12px; }
+        .skill-item { background-color: var(--badge-bg); color: var(--badge-color); border: 1px solid var(--badge-border); padding: 10px 12px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; z-index: 5; position: relative; }
 
-        /* --- CUBO 3D INTERATIVO DE TECNOLOGIAS --- */
         .cubo-container {
-            width: 180px; height: 180px; margin: 40px auto; perspective: 800px; cursor: grab; z-index: 2; position: relative;
+            width: 150px; height: 150px; margin: 30px auto; perspective: 700px; cursor: grab; z-index: 5; position: relative;
         }
         .cubo-container:active { cursor: grabbing; }
         .cubo-3d {
@@ -210,131 +214,137 @@
             100% { transform: rotateX(360deg) rotateY(360deg); }
         }
         .face-cubo {
-            position: absolute; width: 180px; height: 180px; background: rgba(138, 43, 226, 0.15);
+            position: absolute; width: 150px; height: 150px; background: rgba(138, 43, 226, 0.18);
             border: 2px solid var(--h1-color); display: flex; align-items: center; justify-content: center;
-            font-family: 'Share Tech Mono', monospace; font-weight: bold; font-size: 1.1rem; color: var(--h1-color);
-            box-shadow: inset 0 0 20px rgba(0, 245, 212, 0.2); text-align: center; padding: 10px;
+            font-family: 'Share Tech Mono', monospace; font-weight: bold; font-size: 0.95rem; color: var(--h1-color);
+            box-shadow: inset 0 0 15px rgba(0, 245, 212, 0.2); text-align: center; padding: 8px;
         }
-        .frente  { transform: translateZ(90px); }
-        .tras    { transform: rotateY(180deg) translateZ(90px); }
-        .direita { transform: rotateY(90deg) translateZ(90px); }
-        .esquerda{ transform: rotateY(-90deg) translateZ(90px); }
-        .cima    { transform: rotateX(90deg) translateZ(90px); }
-        .baixo   { transform: rotateX(-90deg) translateZ(90px); }
+        .frente  { transform: translateZ(75px); }
+        .tras    { transform: rotateY(180deg) translateZ(75px); }
+        .direita { transform: rotateY(90deg) translateZ(75px); }
+        .esquerda{ transform: rotateY(-90deg) translateZ(75px); }
+        .cima    { transform: rotateX(90deg) translateZ(75px); }
+        .baixo   { transform: rotateX(-90deg) translateZ(75px); }
 
-        .filtros-container { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; z-index: 2; position: relative; }
+        .filtros-container { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; z-index: 5; position: relative; }
         .btn-filtro {
             background: transparent; color: var(--text-color); border: 1px solid var(--card-border);
-            padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem;
-            transition: all 0.3s ease;
+            padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.85rem;
+            transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;
         }
         .btn-filtro.ativo, .btn-filtro:hover { background: var(--btn-bg); color: #fff; border-color: var(--btn-bg); }
 
-        .projetos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .projeto-card { display: flex; flex-direction: column; gap: 14px; }
-        .projeto-card h3 { color: var(--project-title-color); font-size: 1.25rem; font-family: 'Philosopher', serif; z-index: 2; transform: translateZ(20px); }
-        .projeto-card p, .projeto-card .projeto-tags, .projeto-card .projeto-link { z-index: 2; transform: translateZ(10px); }
+        .projetos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
+        .projeto-card { display: flex; flex-direction: column; gap: 12px; }
+        .projeto-card h3 { color: var(--project-title-color); font-size: 1.15rem; font-family: 'Philosopher', serif; z-index: 2; }
+        .projeto-card p, .projeto-card .projeto-tags, .projeto-card .projeto-link { z-index: 2; }
         
-        .projeto-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0; }
-        .tag { background: var(--badge-bg); color: var(--badge-color); font-size: 0.8rem; padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid var(--badge-border); }
-        .projeto-link { color: var(--nav-link); font-size: 0.95rem; font-weight: bold; text-decoration: none; margin-top: auto; display: inline-flex; align-items: center; gap: 6px; }
+        .projeto-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0; }
+        .tag { background: var(--badge-bg); color: var(--badge-color); font-size: 0.75rem; padding: 3px 8px; border-radius: 5px; font-weight: 600; border: 1px solid var(--badge-border); }
+        .projeto-link { color: var(--nav-link); font-size: 0.9rem; font-weight: bold; text-decoration: none; margin-top: auto; display: inline-flex; align-items: center; gap: 5px; }
         .projeto-link:hover { color: var(--h1-color); text-decoration: underline; }
 
         .pong-container {
-            background: rgba(0, 0, 0, 0.2); border: 2px solid var(--h1-color); border-radius: 12px;
-            width: 100%; max-width: 600px; margin: 20px auto; display: flex; flex-direction: column;
-            align-items: center; padding: 15px; box-shadow: 0 10px 30px rgba(0, 245, 212, 0.15);
-            z-index: 2; position: relative;
+            background: rgba(0, 0, 0, 0.25); border: 2px solid var(--h1-color); border-radius: 12px;
+            width: 100%; max-width: 100%; margin: 15px auto; display: flex; flex-direction: column;
+            align-items: center; padding: 12px; box-shadow: 0 10px 30px rgba(0, 245, 212, 0.15);
+            z-index: 5; position: relative; overflow: hidden;
         }
-        .pong-barra-topo { display: flex; justify-content: space-between; width: 100%; max-width: 540px; margin-bottom: 10px; align-items: center; }
+        .pong-barra-topo { display: flex; justify-content: space-between; width: 100%; margin-bottom: 8px; align-items: center; flex-wrap: wrap; gap: 6px; }
         .btn-pong-controle {
-            background: var(--h1-color); color: #0d0e15; border: none; padding: 6px 14px;
-            border-radius: 6px; font-weight: bold; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: opacity 0.2s;
+            background: var(--h1-color); color: #0d0e15; border: none; padding: 5px 12px;
+            border-radius: 5px; font-weight: bold; font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 0.8rem;
         }
         .btn-pong-controle:hover { opacity: 0.85; }
-        #pong-canvas { background: #090a0f; border: 1px solid #2d2448; display: block; width: 100%; max-width: 540px; height: 320px; }
-        .pong-controles-info { color: #38bdf8; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; margin-top: 10px; text-align: center; }
+        #pong-canvas { background: #090a0f; border: 1px solid #2d2448; display: block; width: 100%; max-width: 480px; height: 260px; }
+        .pong-controles-info { color: #38bdf8; font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; margin-top: 8px; text-align: center; }
 
-        .badges-contato { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; margin-bottom: 15px; z-index: 2; position: relative; }
+        .badges-contato { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; margin-bottom: 14px; z-index: 5; position: relative; }
         .badge-contato {
             display: inline-flex; align-items: center; gap: 10px; background: var(--card-bg);
-            color: var(--text-color); border: 2px solid var(--card-border); padding: 12px 20px;
-            border-radius: 30px; font-weight: 600; font-size: 0.95rem; text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: all 0.3s ease; cursor: pointer;
+            color: var(--text-color); border: 2px solid var(--card-border); padding: 12px 18px;
+            border-radius: 25px; font-weight: 600; font-size: 0.9rem; text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: all 0.3s ease; cursor: pointer; justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
-        .badge-contato svg { width: 20px; height: 20px; fill: var(--h1-color); transition: transform 0.3s; }
-        .badge-contato:hover { border-color: var(--h1-color); color: var(--h1-color); transform: translateY(-3px); }
+        .badge-contato svg { width: 18px; height: 18px; fill: var(--h1-color); transition: transform 0.3s; flex-shrink: 0; }
+        .badge-contato:hover { border-color: var(--h1-color); color: var(--h1-color); transform: translateY(-2px); }
 
-        form { display: flex; flex-direction: column; gap: 16px; max-width: 580px; margin-top: 15px; z-index: 2; position: relative; }
-        .form-group { display: flex; flex-direction: column; gap: 6px; }
-        label { font-weight: bold; color: var(--text-color); font-size: 0.95rem; }
+        form { display: flex; flex-direction: column; gap: 14px; width: 100%; margin-top: 14px; z-index: 5; position: relative; }
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-weight: bold; color: var(--text-color); font-size: 0.9rem; }
         input, textarea {
-            width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--input-border);
-            background: var(--input-bg); color: var(--text-color); font-family: inherit; font-size: 1rem; outline: none; transition: all 0.3s;
+            width: 100%; padding: 11px 13px; border-radius: 8px; border: 1px solid var(--input-border);
+            background: var(--input-bg); color: var(--text-color); font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.3s;
         }
         input:focus, textarea:focus { border-color: var(--h1-color); box-shadow: 0 0 0 3px rgba(29,78,216,0.15); }
 
         button[type="submit"] {
-            padding: 12px 24px; background-color: var(--btn-bg); color: var(--btn-text);
-            font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.2s; align-self: flex-start;
+            padding: 11px 20px; background-color: var(--btn-bg); color: var(--btn-text);
+            font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; width: 100%; text-align: center;
         }
-        button[type="submit"]:hover { opacity: 0.9; transform: scale(1.02); }
+        button[type="submit"]:hover { opacity: 0.9; }
 
         #btn-topo {
-            position: fixed; bottom: 25px; left: 25px; z-index: 997;
+            position: fixed; bottom: 20px; left: 20px; z-index: 9998;
             background: var(--header-bg); color: var(--h1-color); border: 2px solid var(--header-border);
-            width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(10px);
         }
         #btn-topo.visivel { opacity: 1; visibility: visible; }
-        #btn-topo:hover { transform: translateY(-3px); }
 
-        #toast-container { position: fixed; bottom: 25px; right: 25px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+        #toast-container { position: fixed; bottom: 20px; right: 15px; left: 15px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
         .toast {
             background: var(--header-bg); color: var(--text-color); border: 2px solid var(--h1-color);
-            padding: 14px 22px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            font-weight: 600; font-size: 0.95rem; animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards; backdrop-filter: blur(10px);
+            padding: 12px 18px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            font-weight: 600; font-size: 0.9rem; animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards; backdrop-filter: blur(10px);
+            text-align: center; width: 100%; max-width: 380px; pointer-events: auto;
         }
-        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes fadeOut { to { opacity: 0; transform: translateY(10px); } }
 
-        /* --- RODAPÉ FIXO NA PARTE INFERIOR --- */
         footer { 
             position: fixed; bottom: 0; left: 0; width: 100%;
-            text-align: center; padding: 1rem 2rem; border-top: 2px solid var(--header-border); 
-            color: var(--header-text); font-size: 0.9rem; background-color: var(--header-bg); 
-            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px; 
+            text-align: center; padding: 0.8rem 1rem; border-top: 2px solid var(--header-border); 
+            color: var(--header-text); font-size: 0.8rem; background-color: var(--header-bg); 
+            display: flex; flex-direction: column; gap: 4px; 
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            z-index: 996; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 9990; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
         }
         html.claro footer { color: #1e40af; }
 
-        @media screen and (max-width: 768px) {
-            header { flex-direction: column; gap: 12px; padding: 1rem; text-align: center; }
-            body { padding-top: 140px; padding-bottom: 120px; }
-            nav { flex-wrap: wrap; justify-content: center; gap: 14px; }
-            main { padding: 1.5rem 1rem; }
+        @media screen and (min-width: 640px) {
+            body { padding-top: 90px; padding-bottom: 80px; }
+            header { padding: 1rem 2rem; }
+            .logo { font-size: 1.25rem; }
+            main { padding: 2.5rem 2rem; }
+            h1 { font-size: 2.2rem; }
+            .badges-contato { flex-direction: row; flex-wrap: wrap; }
+            .badge-contato { flex: 1; min-width: 200px; justify-content: flex-start; }
+            button[type="submit"] { width: auto; align-self: flex-start; }
+            #toast-container { left: auto; right: 25px; bottom: 25px; align-items: flex-end; }
+            .toast { text-align: left; }
+            footer { flex-direction: row; justify-content: space-around; padding: 1rem 2rem; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Fundo do Universo com Canvas, Partículas e Rasto de Luz -->
     <canvas id="canvas-particulas"></canvas>
 
     <header>
         <h3 class="logo" onclick="navigateTo('inicio'); easterEggLogo();" title="Dica: Clique 5 vezes aqui!">&lt;Vitor Nascimento /&gt;</h3>
         <nav>
-            <a onclick="navigateTo('inicio')" id="link-inicio" class="ativo">Início</a>
-            <a onclick="navigateTo('sobre')" id="link-sobre">Sobre</a>
-            <a onclick="navigateTo('projetos')" id="link-projetos">Projetos</a>
-            <a onclick="navigateTo('contato')" id="link-contato">Contato</a>
+            <a onclick="navigateTo('inicio')" ontouchend="navigateTo('inicio'); event.preventDefault();" id="link-inicio" class="ativo">Início</a>
+            <a onclick="navigateTo('sobre')" ontouchend="navigateTo('sobre'); event.preventDefault();" id="link-sobre">Sobre</a>
+            <a onclick="navigateTo('projetos')" ontouchend="navigateTo('projetos'); event.preventDefault();" id="link-projetos">Projetos</a>
+            <a onclick="navigateTo('contato')" ontouchend="navigateTo('contato'); event.preventDefault();" id="link-contato">Contato</a>
         </nav>
         <div class="controles-topo">
-            <button id="btn-audio" class="btn-acao-topo" onclick="toggleAudio()" title="Ativar/Desativar Efeitos Sonoros"><span>🔊</span> <span>Som</span></button>
-            <button id="tema" class="btn-acao-topo" onclick="toggleTheme()" title="Atalho: Tecla T">
-                <span class="icone">☀</span> <span class="texto-btn">Modo Claro</span>
+            <button id="btn-audio" class="btn-acao-topo" onclick="toggleAudio()" title="Som"><span>🔊</span></button>
+            <button id="tema" class="btn-acao-topo" onclick="toggleTheme()" title="Tema">
+                <span class="icone">☀</span> <span class="texto-btn">Claro</span>
             </button>
         </div>
     </header>
@@ -346,21 +356,21 @@
                 <span class="pulse-dot"></span> <span id="status-texto">Disponível para Estágio em TI (Tarde)</span> 🔄
             </div>
             
-            <h1 id="saudacao-titulo"></h1>
+            <h1>Seja bem-vindo ao meu portfólio</h1>
             
             <div class="terminal-box">
-                <div class="terminal-linha"><span class="terminal-prompt">vitor@dev:~$</span> git status --profile</div>
+                <div class="terminal-linha"><span class="terminal-prompt">vitor@dev:~$</span> <span id="terminal-digitado" class="cursor-terminal"></span></div>
                 <div class="terminal-linha terminal-texto-principal">> Desenvolvedor Front-End & Técnico em TI empenhado em soluções web e suporte.</div>
             </div>
             
-            <p style="margin-top: 10px; font-size: 1.15rem; font-weight: 500;">Olá! Sou <strong>Vitor Nascimento dos Santos</strong>, estudante de Análise e Desenvolvimento de Sistemas na UNINOVE e desenvolvedor front-end.</p>
+            <p style="margin-top: 10px; font-size: 1.05rem; font-weight: 500;">Olá! Sou <strong>Vitor Nascimento dos Santos</strong>, estudante de Análise e Desenvolvimento de Sistemas na UNINOVE e desenvolvedor front-end.</p>
             
-            <div class="card" style="margin-top: 20px;">
+            <div class="card" style="margin-top: 18px;">
                 <h2>Objetivo Profissional</h2>
                 <p>Estudante focado em buscar oportunidade de <strong>Estágio em TI / Suporte Técnico (Help Desk) / Quality Assurance (QA)</strong>. Possuo sólida base em lógica de programação, resolução de chamados, triagem de erros e desenvolvimento web.</p>
-                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px;">
-                    <button onclick="navigateTo('projetos')" style="padding: 10px 20px; background: var(--btn-bg); color: var(--btn-text); border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Ver Projetos & Mini-Game</button>
-                    <button onclick="navigateTo('contato')" style="padding: 10px 20px; background: transparent; color: var(--h1-color); border: 2px solid var(--h1-color); border-radius: 8px; font-weight: bold; cursor: pointer;">Entrar em Contato</button>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
+                    <button onclick="navigateTo('projetos')" style="padding: 10px 18px; background: var(--btn-bg); color: var(--btn-text); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem;">Ver Projetos & Mini-Game</button>
+                    <button onclick="navigateTo('contato')" style="padding: 10px 18px; background: transparent; color: var(--h1-color); border: 2px solid var(--h1-color); border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem;">Entrar em Contato</button>
                 </div>
             </div>
 
@@ -375,20 +385,20 @@
         <section id="view-sobre" class="view">
             <h1>Sobre Mim</h1>
             
-            <img src="imagens/minha foto.jpg" alt="Foto do Vitor Nascimento" class="foto-perfil" onerror="this.src='https://placehold.co/150x150/161525/00f5d4?text=Vitor+N'">
+            <img src="imagens/minha foto.jpg" alt="Foto do Vitor Nascimento" class="foto-perfil" onerror="this.src='https://placehold.co/130x130/161525/00f5d4?text=Vitor+N'">
             
             <div class="card">
                 <h2>Formação Acadêmica & Capacitação</h2>
                 <p><strong>UNINOVE (Universidade Nove de Julho)</strong><br>
                 Tecnólogo em Análise e Desenvolvimento de Sistemas (ADS) — Início em abril/2026 (2 anos e meio).</p>
-                <p style="margin-top: 10px;"><strong>PROA Transforme-se (Parceria Serasa)</strong><br>
+                <p style="margin-top: 8px;"><strong>PROA Transforme-se (Parceria Serasa)</strong><br>
                 Capacitação técnica prática em Desenvolvimento Front-End (HTML5, CSS3, JavaScript).</p>
             </div>
 
             <!-- Cubo 3D Interativo de Tecnologias -->
             <div class="card" style="text-align: center;">
                 <h2>Tecnologias em Destaque (Cubo 3D)</h2>
-                <p style="font-size: 0.9rem; margin-bottom: 5px;">Clica e arrasta para girar o cubo interativo em 3D!</p>
+                <p style="font-size: 0.85rem; margin-bottom: 4px;">Clica e arrasta para girar o cubo interativo em 3D!</p>
                 <div class="cubo-container" id="cubo-interativo">
                     <div class="cubo-3d" id="elemento-cubo">
                         <div class="face-cubo frente">.NET 8 & C#</div>
@@ -431,9 +441,9 @@
             
             <div class="filtros-container">
                 <button class="btn-filtro ativo" onclick="filtrarProjetos('todos', event)">Todos</button>
-                <button class="btn-filtro" onclick="filtrarProjetos('frontend', event)">Front-End / Web</button>
-                <button class="btn-filtro" onclick="filtrarProjetos('sistemas', event)">Sistemas & Back-End</button>
-                <button class="btn-filtro" onclick="filtrarProjetos('game', event)">🎮 Mini-Game Pong</button>
+                <button class="btn-filtro" onclick="filtrarProjetos('frontend', event)">Front-End</button>
+                <button class="btn-filtro" onclick="filtrarProjetos('sistemas', event)">Sistemas</button>
+                <button class="btn-filtro" onclick="filtrarProjetos('game', event)">🎮 Pong</button>
             </div>
 
             <div class="projetos-grid" id="grid-projetos">
@@ -442,7 +452,7 @@
                     <div class="projeto-tags">
                         <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
                     </div>
-                    <p>Aplicação web interativa desenvolvida com tema escuro neon roxo/azul, navegação fluida em abas, partículas 3D, tilt 3D e mini-game.</p>
+                    <p>Aplicação web interativa desenvolvida com tema escuro/claro, navegação fluida em abas, partículas 3D, tilt 3D e mini-game.</p>
                     <a href="https://github.com/vitorns-dev/portif-lio_oficial" target="_blank" class="projeto-link">Ver Repositório no GitHub &rarr;</a>
                 </div>
 
@@ -464,16 +474,16 @@
                     <a href="https://github.com/vitorns-dev" target="_blank" class="projeto-link">Ver Repositório no GitHub &rarr;</a>
                 </div>
 
-                <!-- Mini-Game Pong Card com Botão de Pausa -->
+                <!-- Mini-Game Pong Card -->
                 <div class="projeto-card" data-categoria="game" style="grid-column: 1 / -1;">
-                    <h3>🎯 Mini-Game: Pong Retro (Easter Egg Interativo)</h3>
-                    <p>Joga diretamente no teu portfólio! Usa as teclas <strong>W / S</strong> ou as <strong>Setas Cima / Baixo</strong> para controlar a raquete. Pressiona <strong>Espaço</strong> ou o botão abaixo para Pausar/Retomar.</p>
+                    <h3>🎯 Mini-Game: Pong Retro (Easter Egg)</h3>
+                    <p>Joga diretamente no portfólio! Usa as teclas <strong>W / S</strong> ou as <strong>Setas</strong> para controlar a raquete. Pressiona <strong>Espaço</strong> ou o botão para Pausar/Retomar.</p>
                     <div class="pong-container">
                         <div class="pong-barra-topo">
-                            <span style="color: var(--h1-color); font-family: 'Share Tech Mono', monospace; font-size: 0.9rem;" id="pong-status-label">⏸️ Jogo Pausado</span>
-                            <button class="btn-pong-controle" onclick="togglePausarPong()" id="btn-pong-pausa">▶️ Iniciar / Pausar</button>
+                            <span style="color: var(--h1-color); font-family: 'Share Tech Mono', monospace; font-size: 0.8rem;" id="pong-status-label">⏸️ Pausado</span>
+                            <button class="btn-pong-controle" onclick="togglePausarPong()" id="btn-pong-pausa">▶️ Iniciar / Pausa</button>
                         </div>
-                        <canvas id="pong-canvas" width="540" height="320"></canvas>
+                        <canvas id="pong-canvas" width="480" height="260"></canvas>
                         <div class="pong-controles-info">Comandos: [ W / S ] ou [ ↑ / ↓ ] | Pausa: [ Espaço ]</div>
                     </div>
                 </div>
@@ -494,7 +504,7 @@
                     <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     LinkedIn
                 </a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vitornsantos405@gmail.com" target="_blank" class="badge-contato" title="Abrir Gmail diretamente no navegador">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vitornsantos405@gmail.com" target="_blank" class="badge-contato" title="Gmail">
                     <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     Enviar E-mail (Gmail)
                 </a>
@@ -522,18 +532,14 @@
         </section>
     </main>
 
-    <!-- Botão Voltar ao Topo -->
     <button id="btn-topo" onclick="voltarAoTopo()" title="Voltar ao topo">↑</button>
-
-    <!-- Contentor de Alertas Toast -->
     <div id="toast-container"></div>
 
     <footer>
         <p class="copyright">&copy; 2026 Vitor Nascimento dos Santos. Todos os direitos reservados.</p>
-        <p id="sessao-timer" style="font-size: 0.85rem; color: #38bdf8;">Tempo na página: 0s</p>
+        <p id="sessao-timer" style="font-size: 0.78rem; color: #38bdf8;">Tempo na página: 0s</p>
     </footer>
 
-    <!-- Lógica JavaScript Dinâmica Completa -->
     <script>
         let audioAtivo = true;
         let audioCtx = null;
@@ -558,8 +564,8 @@
         function toggleAudio() {
             audioAtivo = !audioAtivo;
             const btn = document.getElementById('btn-audio');
-            btn.innerHTML = audioAtivo ? "<span>🔊</span> <span>Som</span>" : "<span>🔇</span> <span>Mudo</span>";
-            mostrarToast(audioAtivo ? "🔊 Efeitos sonoros ativados!" : "🔇 Efeitos sonoros desativados.");
+            btn.innerHTML = audioAtivo ? "<span>🔊</span>" : "<span>🔇</span>";
+            mostrarToast(audioAtivo ? "🔊 Som ativado!" : "🔇 Som desativado.");
             tatearSom(600, 'triangle', 0.1);
         }
 
@@ -578,11 +584,10 @@
             mostrarToast("🔄 Status atualizado com sucesso!");
         }
 
-        /* --- CANVAS DO UNIVERSO, PARTÍCULAS E RASTO DO RATO --- */
         const canvasPart = document.getElementById('canvas-particulas');
         const ctxPart = canvasPart.getContext('2d');
         let estrelas = [];
-        const numEstrelas = 110;
+        const numEstrelas = 80;
         let anguloNebulosa = 0;
 
         let mouseX = -1000;
@@ -592,10 +597,17 @@
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            rastoRato.push({ x: mouseX, y: mouseY, alpha: 1, raio: Math.random() * 2 + 1 });
+            if (rastoRato.length > 15) rastoRato.shift();
+        });
 
-            // Adiciona partículas ao rasto de luz do rato
-            rastoRato.push({ x: mouseX, y: mouseY, alpha: 1, raio: Math.random() * 3 + 1 });
-            if (rastoRato.length > 25) rastoRato.shift();
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+                rastoRato.push({ x: mouseX, y: mouseY, alpha: 1, raio: Math.random() * 2 + 1 });
+                if (rastoRato.length > 15) rastoRato.shift();
+            }
         });
 
         function redimensionarCanvas() {
@@ -609,10 +621,10 @@
             estrelas.push({
                 x: Math.random() * canvasPart.width,
                 y: Math.random() * canvasPart.height,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                radius: Math.random() * 2.5 + 0.6,
-                alpha: Math.random() * 0.8 + 0.2
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: (Math.random() - 0.5) * 0.25,
+                radius: Math.random() * 1.8 + 0.4,
+                alpha: Math.random() * 0.6 + 0.2
             });
         }
 
@@ -620,12 +632,11 @@
             ctxPart.clearRect(0, 0, canvasPart.width, canvasPart.height);
             const isClaro = document.documentElement.classList.contains('claro');
             
-            // Gradiente Cósmico de Fundo
             const gradFundo = ctxPart.createLinearGradient(0, 0, canvasPart.width, canvasPart.height);
             if (isClaro) {
-                gradFundo.addColorStop(0, '#f1f5f9');
-                gradFundo.addColorStop(0.5, '#cbd5e1');
-                gradFundo.addColorStop(1, '#94a3b8');
+                gradFundo.addColorStop(0, '#f8fafc');
+                gradFundo.addColorStop(0.5, '#e2e8f0');
+                gradFundo.addColorStop(1, '#cbd5e1');
             } else {
                 gradFundo.addColorStop(0, '#05060a');
                 gradFundo.addColorStop(0.5, '#120d20');
@@ -634,32 +645,29 @@
             ctxPart.fillStyle = gradFundo;
             ctxPart.fillRect(0, 0, canvasPart.width, canvasPart.height);
 
-            // Ondas energéticas do espaço-tempo
-            anguloNebulosa += 0.02;
+            anguloNebulosa += 0.015;
             ctxPart.lineWidth = 1;
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 2; i++) {
                 ctxPart.beginPath();
-                ctxPart.strokeStyle = isClaro ? `rgba(30, 64, 175, ${0.12 + i * 0.04})` : `rgba(138, 43, 226, ${0.2 + i * 0.08})`;
-                for (let x = 0; x < canvasPart.width; x += 35) {
-                    let y = canvasPart.height * 0.5 + Math.sin(x * 0.003 + anguloNebulosa + i) * 90 + Math.cos(x * 0.005 - anguloNebulosa) * 50;
+                ctxPart.strokeStyle = isClaro ? `rgba(29, 78, 216, ${0.06 + i * 0.02})` : `rgba(138, 43, 226, ${0.15 + i * 0.05})`;
+                for (let x = 0; x < canvasPart.width; x += 50) {
+                    let y = canvasPart.height * 0.5 + Math.sin(x * 0.003 + anguloNebulosa + i) * 70 + Math.cos(x * 0.005 - anguloNebulosa) * 35;
                     if (x === 0) ctxPart.moveTo(x, y);
                     else ctxPart.lineTo(x, y);
                 }
                 ctxPart.stroke();
             }
 
-            // Desenhar rasto de luz do rato
             rastoRato.forEach((p) => {
-                p.alpha -= 0.04;
+                p.alpha -= 0.06;
                 if (p.alpha > 0) {
                     ctxPart.beginPath();
                     ctxPart.arc(p.x, p.y, p.raio, 0, Math.PI * 2);
-                    ctxPart.fillStyle = isClaro ? `rgba(29, 78, 216, ${p.alpha * 0.7})` : `rgba(0, 245, 212, ${p.alpha})`;
+                    ctxPart.fillStyle = isClaro ? `rgba(29, 78, 216, ${p.alpha * 0.5})` : `rgba(0, 245, 212, ${p.alpha})`;
                     ctxPart.fill();
                 }
             });
 
-            // Estrelas e constelações reativas ao rato
             for (let i = 0; i < estrelas.length; i++) {
                 let e = estrelas[i];
                 e.x += e.vx;
@@ -669,62 +677,27 @@
                 if (e.y < 0 || e.y > canvasPart.height) e.vy *= -1;
 
                 let distMouse = Math.hypot(mouseX - e.x, mouseY - e.y);
-                if (distMouse < 160) {
+                if (distMouse < 120) {
                     let angulo = Math.atan2(e.y - mouseY, e.x - mouseX);
-                    e.x += Math.cos(angulo) * 1.8;
-                    e.y += Math.sin(angulo) * 1.8;
+                    e.x += Math.cos(angulo) * 1.2;
+                    e.y += Math.sin(angulo) * 1.2;
                 }
 
                 ctxPart.beginPath();
                 ctxPart.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
                 ctxPart.fillStyle = isClaro ? `rgba(30, 64, 175, ${e.alpha})` : `rgba(0, 245, 212, ${e.alpha})`;
                 ctxPart.fill();
-
-                for (let j = i + 1; j < estrelas.length; j++) {
-                    let e2 = estrelas[j];
-                    let dist = Math.hypot(e.x - e2.x, e.y - e2.y);
-                    if (dist < 120) {
-                        ctxPart.beginPath();
-                        ctxPart.moveTo(e.x, e.y);
-                        ctxPart.lineTo(e2.x, e2.y);
-                        ctxPart.strokeStyle = isClaro ? `rgba(30, 64, 175, ${0.2 * (1 - dist / 120)})` : `rgba(138, 43, 226, ${0.3 * (1 - dist / 120)})`;
-                        ctxPart.stroke();
-                    }
-                }
-
-                if (distMouse < 110) {
-                    ctxPart.beginPath();
-                    ctxPart.moveTo(e.x, e.y);
-                    ctxPart.lineTo(mouseX, mouseY);
-                    ctxPart.strokeStyle = isClaro ? `rgba(29, 78, 216, ${0.35 * (1 - distMouse / 110)})` : `rgba(0, 245, 212, ${0.45 * (1 - distMouse / 110)})`;
-                    ctxPart.stroke();
-                }
             }
             requestAnimationFrame(animarUniverso);
         }
         animarUniverso();
 
-        /* --- EFEITO DE DIGITAÇÃO AUTOMÁTICA (TIPO TERMINAL GITHUB) --- */
-        const textoDigitado = "Seja bem-vindo ao meu portfólio cósmico";
-        let indiceLetra = 0;
-
-        function iniciarDigitacao() {
-            const elementoTitulo = document.getElementById('saudacao-titulo');
-            if (!elementoTitulo) return;
-            
-            if (indiceLetra < textoDigitado.length) {
-                elementoTitulo.textContent += textoDigitado.charAt(indiceLetra);
-                indiceLetra++;
-                setTimeout(iniciarDigitacao, 55);
-            }
-        }
-
-        /* --- EFEITO 3D TILT E SPOTLIGHT NOS CARDS --- */
-        document.addEventListener('mousemove', (e) => {
+        /* --- EFEITO SPOTLIGHT E TILT (MOUSE E TOQUE) --- */
+        function processarMovimentoPointer(clientX, clientY) {
             document.querySelectorAll('.card, .projeto-card').forEach(card => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
                 card.style.setProperty('--x', `${x}px`);
                 card.style.setProperty('--y', `${y}px`);
 
@@ -734,52 +707,78 @@
                 const mouseYLocal = y - centerY;
                 
                 if (Math.abs(mouseXLocal) < centerX + 60 && Math.abs(mouseYLocal) < centerY + 60) {
-                    const rotateX = (-mouseYLocal / centerY) * 7;
-                    const rotateY = (mouseXLocal / centerX) * 7;
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                    const rotateX = (-mouseYLocal / centerY) * 5;
+                    const rotateY = (mouseXLocal / centerX) * 5;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+                    card.classList.add('ativo-touch');
                 } else {
                     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+                    card.classList.remove('ativo-touch');
                 }
             });
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            processarMovimentoPointer(e.clientX, e.clientY);
         });
 
-        /* --- INTERATIVIDADE DO CUBO 3D COM O RATO --- */
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                processarMovimentoPointer(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
+
+        const textoTerminal = "git status --profile";
+        let indiceTerminal = 0;
+
+        function iniciarDigitacaoTerminal() {
+            const elementoTerminal = document.getElementById('terminal-digitado');
+            if (!elementoTerminal) return;
+            
+            if (indiceTerminal < textoTerminal.length) {
+                elementoTerminal.textContent += textoTerminal.charAt(indiceTerminal);
+                indiceTerminal++;
+                setTimeout(iniciarDigitacaoTerminal, 70);
+            }
+        }
+
         const cuboContainer = document.getElementById('cubo-interativo');
         const elementoCubo = document.getElementById('elemento-cubo');
         let isDragging = false;
         let startX, startY;
         let rotX = -15, rotY = 25;
 
-        cuboContainer.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-        });
+        cuboContainer.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX; startY = e.clientY; });
+        cuboContainer.addEventListener('touchstart', (e) => { if(e.touches.length > 0) { isDragging = true; startX = e.touches[0].clientX; startY = e.touches[0].clientY; } });
 
         window.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            let deltaX = e.clientX - startX;
-            let deltaY = e.clientY - startY;
-            rotY += deltaX * 0.5;
-            rotX -= deltaY * 0.5;
+            rotY += (e.clientX - startX) * 0.5;
+            rotX -= (e.clientY - startY) * 0.5;
             elementoCubo.style.animation = 'none';
             elementoCubo.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-            startX = e.clientX;
-            startY = e.clientY;
+            startX = e.clientX; startY = e.clientY;
         });
 
-        window.addEventListener('mouseup', () => {
-            isDragging = false;
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging || e.touches.length === 0) return;
+            rotY += (e.touches[0].clientX - startX) * 0.5;
+            rotX -= (e.touches[0].clientY - startY) * 0.5;
+            elementoCubo.style.animation = 'none';
+            elementoCubo.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+            startX = e.touches[0].clientX; startY = e.touches[0].clientY;
         });
 
-        /* --- MINI-GAME PONG --- */
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        window.addEventListener('touchend', () => { isDragging = false; });
+
         const pongCanvas = document.getElementById('pong-canvas');
         const pongCtx = pongCanvas.getContext('2d');
         
         let pongGame = {
-            bola: { x: 270, y: 160, vx: 3, vy: 2, raio: 7 },
-            jogador: { x: 15, y: 120, w: 10, h: 65 },
-            ia: { x: 515, y: 120, w: 10, h: 65 },
+            bola: { x: 240, y: 130, vx: 2.8, vy: 2, raio: 6 },
+            jogador: { x: 12, y: 95, w: 8, h: 55 },
+            ia: { x: 460, y: 95, w: 8, h: 55 },
             pontosJogador: 0,
             pontosIA: 0,
             ativo: false
@@ -789,10 +788,10 @@
             pongGame.ativo = !pongGame.ativo;
             const label = document.getElementById('pong-status-label');
             if (pongGame.ativo) {
-                label.textContent = "▶️ Jogo a Decorrer";
+                label.textContent = "▶️ A Decorrer";
                 tatearSom(523.25, 'sine', 0.1);
             } else {
-                label.textContent = "⏸️ Jogo Pausado";
+                label.textContent = "⏸️ Pausado";
                 tatearSom(300, 'sine', 0.1);
             }
         }
@@ -815,10 +814,10 @@
             if (!pongGame.ativo) return;
 
             if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') {
-                pongGame.jogador.y = Math.max(0, pongGame.jogador.y - 20);
+                pongGame.jogador.y = Math.max(0, pongGame.jogador.y - 18);
             }
             if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') {
-                pongGame.jogador.y = Math.min(pongCanvas.height - pongGame.jogador.h, pongGame.jogador.y + 20);
+                pongGame.jogador.y = Math.min(pongCanvas.height - pongGame.jogador.h, pongGame.jogador.y + 18);
             }
         });
 
@@ -834,19 +833,19 @@
             }
 
             let centroIA = pongGame.ia.y + pongGame.ia.h / 2;
-            if (centroIA < pongGame.bola.y - 15) pongGame.ia.y += 2.5;
-            else if (centroIA > pongGame.bola.y + 15) pongGame.ia.y -= 2.5;
+            if (centroIA < pongGame.bola.y - 12) pongGame.ia.y += 2.2;
+            else if (centroIA > pongGame.bola.y + 12) pongGame.ia.y -= 2.2;
             pongGame.ia.y = Math.max(0, Math.min(pongCanvas.height - pongGame.ia.h, pongGame.ia.y));
 
             if (pongGame.bola.x - pongGame.bola.raio < pongGame.jogador.x + pongGame.jogador.w &&
                 pongGame.bola.y > pongGame.jogador.y && pongGame.bola.y < pongGame.jogador.y + pongGame.jogador.h) {
-                pongGame.bola.vx *= -1.05;
+                pongGame.bola.vx *= -1.04;
                 tatearSom(600, 'square', 0.08);
             }
 
             if (pongGame.bola.x + pongGame.bola.raio > pongGame.ia.x &&
                 pongGame.bola.y > pongGame.ia.y && pongGame.bola.y < pongGame.ia.y + pongGame.ia.h) {
-                pongGame.bola.vx *= -1.05;
+                pongGame.bola.vx *= -1.04;
                 tatearSom(700, 'square', 0.08);
             }
 
@@ -863,8 +862,8 @@
             tatearSom(200, 'sawtooth', 0.2);
             pongGame.bola.x = pongCanvas.width / 2;
             pongGame.bola.y = pongCanvas.height / 2;
-            pongGame.bola.vx = quemMarcou === 'jogador' ? -3 : 3;
-            pongGame.bola.vy = (Math.random() - 0.5) * 4;
+            pongGame.bola.vx = quemMarcou === 'jogador' ? -2.8 : 2.8;
+            pongGame.bola.vy = (Math.random() - 0.5) * 3.5;
         }
 
         function desenharPong() {
@@ -872,7 +871,7 @@
             pongCtx.fillRect(0, 0, pongCanvas.width, pongCanvas.height);
 
             pongCtx.strokeStyle = '#2d2448';
-            pongCtx.setLineDash([5, 5]);
+            pongCtx.setLineDash([4, 4]);
             pongCtx.beginPath();
             pongCtx.moveTo(pongCanvas.width / 2, 0);
             pongCtx.lineTo(pongCanvas.width / 2, pongCanvas.height);
@@ -890,16 +889,16 @@
             pongCtx.arc(pongGame.bola.x, pongGame.bola.y, pongGame.bola.raio, 0, Math.PI * 2);
             pongCtx.fill();
 
-            pongCtx.font = '24px "Share Tech Mono", monospace';
+            pongCtx.font = '20px "Share Tech Mono", monospace';
             pongCtx.fillStyle = '#38bdf8';
-            pongCtx.fillText(pongGame.pontosJogador, pongCanvas.width / 2 - 50, 30);
-            pongCtx.fillText(pongGame.pontosIA, pongCanvas.width / 2 + 35, 30);
+            pongCtx.fillText(pongGame.pontosJogador, pongCanvas.width / 2 - 45, 26);
+            pongCtx.fillText(pongGame.pontosIA, pongCanvas.width / 2 + 30, 26);
 
             if (!pongGame.ativo) {
                 pongCtx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-                pongCtx.font = '16px Inter, sans-serif';
+                pongCtx.font = '14px Inter, sans-serif';
                 pongCtx.textAlign = 'center';
-                pongCtx.fillText('JOGO PAUSADO — Clica no botão ou aperta Espaço', pongCanvas.width / 2, pongCanvas.height / 2 + 50);
+                pongCtx.fillText('JOGO PAUSADO — Clica no botão ou Espaço', pongCanvas.width / 2, pongCanvas.height / 2 + 40);
                 pongCtx.textAlign = 'left';
             }
         }
@@ -911,7 +910,6 @@
         }
         loopPong();
 
-        /* --- NAVEGAÇÃO ENTRE ABAS --- */
         function navigateTo(viewName) {
             tatearSom(550, 'sine', 0.08);
             document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
@@ -938,7 +936,7 @@
         function updateThemeButton(isClaro) {
             const btn = document.getElementById('tema');
             if (!btn) return;
-            btn.innerHTML = isClaro ? '<span class="icone">☾</span> <span class="texto-btn">Modo Escuro</span>' : '<span class="icone">☀</span> <span class="texto-btn">Modo Claro</span>';
+            btn.innerHTML = isClaro ? '<span class="icone">☾</span> <span class="texto-btn">Escuro</span>' : '<span class="icone">☀</span> <span class="texto-btn">Claro</span>';
         }
 
         function mostrarToast(mensagem) {
@@ -947,10 +945,7 @@
             toast.className = 'toast';
             toast.textContent = mensagem;
             container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
+            setTimeout(() => { toast.remove(); }, 3000);
         }
 
         let cliquesLogo = 0;
@@ -974,13 +969,13 @@
             }
 
             tatearSom(784, 'square', 0.2);
-            mostrarToast(`✨ Obrigado, ${nome}! Mensagem enviada com sucesso.`);
+            mostrarToast(`✨ Obrigado, ${nome}! Mensagem enviada.`);
             document.getElementById('form-contato').reset();
         }
 
         window.addEventListener('scroll', () => {
             const btnTopo = document.getElementById('btn-topo');
-            if (window.scrollY > 300) btnTopo.classList.add('visivel');
+            if (window.scrollY > 250) btnTopo.classList.add('visivel');
             else btnTopo.classList.remove('visivel');
         });
 
@@ -996,15 +991,12 @@
             const segundos = segundosNaPagina % 60;
             const timerEl = document.getElementById('sessao-timer');
             if (timerEl) {
-                timerEl.textContent = minutos > 0 
-                    ? `Tempo na página: ${minutos}m ${segundos}s` 
-                    : `Tempo na página: ${segundos}s`;
+                timerEl.textContent = minutos > 0 ? `Tempo: ${minutos}m ${segundos}s` : `Tempo: ${segundos}s`;
             }
         }, 1000);
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Inicia o efeito de digitação automática no título
-            setTimeout(iniciarDigitacao, 300);
+            setTimeout(iniciarDigitacaoTerminal, 300);
 
             const temaSalvo = localStorage.getItem('tema');
             if (temaSalvo === 'claro') {
