@@ -4,62 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio Oficial | Vitor Nascimento dos Santos</title>
+    
+    <link rel="icon" href="data:,">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- MODO ESCURO (ROXO PROFUNDO COM CORES VARIADAS E VIVAS) --- */
         :root {
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            --header-bg: rgba(13, 14, 21, 0.95);
-            --header-border: rgba(138, 43, 226, 0.5);
-            --nav-link: #38bdf8;
-            --nav-hover: #ffffff;
-            --h1-color: #00f5d4;
-            --h2-color: #ffd166;
-            --card-border: rgba(138, 43, 226, 0.6);
+            --bg-body: #06030e;
+            --text-color: #f1f5f9;
+            --text-muted: #a0d1e7;
+            
+            /* Cabeçalho roxo escuro elegante */
+            --header-bg: rgba(12, 6, 24, 0.92);
+            --header-text: #f8fafc;
+            --header-border: rgba(192, 132, 252, 0.4);
+            
+            --nav-link: #0068f4;
+            --nav-hover: #e2d7ff;
+            
+            /* Cores variadas e marcantes no Modo Escuro */
+            --h1-color: #2484ff;       /* Roxo Neon */
+            --h2-color: #a738f8;       /* Azul Ciano Vivo */
+            --tag-color: #34d399;      /* Verde Esmeralda */
+            
+            /* CARTÕES 100% TRANSPARENTES (SEM FUMAÇA) */
             --card-bg: transparent !important; 
-            --badge-bg: rgba(0, 245, 212, 0.08);
-            --badge-color: #00f5d4;
-            --badge-border: #00f5d4;
-            --input-bg: rgba(255, 255, 255, 0.03);
-            --input-border: #8a2be2;
-            --btn-bg: #8a2be2;
+            --glass-badge: rgba(168, 85, 247, 0.08); 
+            --card-border: rgba(168, 85, 247, 0.4);
+            --cubo-bg: rgba(168, 85, 247, 0.12);
+            
+            --badge-bg: rgba(52, 211, 153, 0.08);
+            --badge-color: #34d399;
+            --badge-border: #34d399;
+            
+            --input-bg: rgba(168, 85, 247, 0.04);
+            --input-border: #a855f7;
+            
+            --btn-bg: #9333ea;
             --btn-text: #ffffff;
-            --project-title-color: #ff5c8a;
-            --spotlight-color: rgba(138, 43, 226, 0.28); /* Brilho em Roxo/Violeta néon nos cards */
-            --card-shadow-hover: 0 20px 40px rgba(138, 43, 226, 0.35);
-            --terminal-bg: rgba(9, 10, 15, 0.95);
-            --terminal-text: #00f5d4;
+            --project-title-color: #f43f5e; /* Rosa choque marcante */
+            
+            --spotlight-color: rgba(168, 85, 247, 0.15);
+            --card-shadow-hover: 0 10px 30px rgba(168, 85, 247, 0.18);
+            
+            --terminal-bg: rgba(12, 6, 24, 0.95);
+            --terminal-text: #34d399;
             --terminal-body-color: #e2e8f0;
         }
 
+        /* --- MODO CLARO (BARRA DE NAVEGAÇÃO ESCURA E CORES VARIADAS) --- */
         html.claro {
-            --text-color: #0f172a;               
-            --text-muted: #334155;               
-            --header-bg: rgba(255, 255, 255, 0.95);                
-            --header-text: #0f172a;              
-            --header-border: rgba(30, 64, 175, 0.3);            
-            --nav-link: #1d4ed8;                 
-            --nav-hover: #0f172a;                
-            --h1-color: #1d4ed8;                 
-            --h2-color: #c2410c;                 
-            --card-border: rgba(29, 78, 216, 0.4);              
+            --bg-body: #f8fafc; 
+            --text-color: #0031a4;               
+            --text-muted: #475569;               
+            
+            /* Barra de navegação e rodapé ESCUROS no modo claro */
+            --header-bg: rgba(15, 23, 42, 0.95); 
+            --header-text: #f8fafc;              
+            --header-border: rgba(147, 51, 234, 0.4);            
+            
+            --nav-link: #cbd5e1;                 
+            --nav-hover: #ffffff;                
+            
+            /* Cores variadas e marcantes no Modo Claro */
+            --h1-color: #a500d8;                 /* Roxo Fechado */
+            --h2-color: #0284c7;                 /* Azul Profundo */
+            --tag-color: #059669;                /* Verde Escuro */
+            
+            /* CARTÕES 100% TRANSPARENTES NO MODO CLARO */
             --card-bg: transparent !important; 
-            --badge-bg: #dbeafe;                 
-            --badge-color: #1e40af;              
-            --badge-border: #93c5fd;             
+            --glass-badge: rgba(147, 51, 234, 0.06); 
+            --card-border: rgba(147, 51, 234, 0.35);              
+            --cubo-bg: rgba(147, 51, 234, 0.06);
+            
+            --badge-bg: rgba(5, 150, 105, 0.08);                 
+            --badge-color: #059669;              
+            --badge-border: #34d399;             
+            
             --input-bg: rgba(255, 255, 255, 0.9);                 
-            --input-border: #3b82f6;             
-            --btn-bg: #1d4ed8;                   
+            --input-border: #9333ea;             
+            
+            --btn-bg: #7c3aed;                   
             --btn-text: #ffffff;                 
-            --project-title-color: #e11d48;      
-            --spotlight-color: rgba(29, 78, 216, 0.14); /* Brilho em Azul no tema claro */
-            --card-shadow-hover: 0 15px 35px rgba(15, 23, 42, 0.15);
-            --terminal-bg: rgba(241, 245, 249, 0.95);               
-            --terminal-text: #0284c7;
-            --terminal-body-color: #0f172a;       
+            --project-title-color: #be185d;      
+            
+            --spotlight-color: rgba(147, 51, 234, 0.08);
+            --card-shadow-hover: 0 10px 25px rgba(147, 51, 234, 0.12);
+            
+            --terminal-bg: rgba(15, 23, 42, 0.95);               
+            --terminal-text: #34d399;
+            --terminal-body-color: #f1f5f9;       
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -68,9 +107,10 @@
             min-height: 100vh;
             color: var(--text-color);
             font-family: 'Inter', sans-serif;
-            transition: color 0.3s ease;
             overflow-x: hidden;
             width: 100%;
+            background-color: var(--bg-body);
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         body {
@@ -96,16 +136,16 @@
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0.8rem 1.5rem; background-color: var(--header-bg);
-            border-bottom: 2px solid var(--header-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            z-index: 9999; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            border-bottom: 1px solid var(--header-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            z-index: 9999; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .logo {
             color: var(--header-text); font-weight: bold; margin: 0;
             font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1.1rem; user-select: none;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
         }
-        html.claro .logo { color: #1e40af; }
 
         nav { display: flex; gap: 16px; align-items: center; }
         nav a {
@@ -115,7 +155,7 @@
         }
         nav a::after {
             content: ""; position: absolute; left: 0; bottom: 0; width: 0%; height: 2px;
-            background-color: var(--h1-color); transition: width 0.4s ease;
+            background-color: var(--h2-color); transition: width 0.4s ease;
         }
         nav a:hover::after, nav a.ativo::after { width: 100%; }
         nav a:hover, nav a.ativo { color: var(--nav-hover) !important; }
@@ -124,29 +164,30 @@
         .btn-acao-topo {
             display: inline-flex; align-items: center; justify-content: center; gap: 6px;
             padding: 6px 10px; font-family: inherit; font-size: 12px; font-weight: bold;
-            border-radius: 20px; cursor: pointer; background-color: rgba(255,255,255,0.08);
-            color: var(--header-text); border: 2px solid var(--header-border); backdrop-filter: blur(4px);
+            border-radius: 20px; cursor: pointer; background-color: rgba(255, 255, 255, 0.1);
+            color: var(--header-text); border: 1px solid var(--header-border);
             transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;
         }
-        .btn-acao-topo:hover { opacity: 0.85; background-color: rgba(255,255,255,0.15); }
+        .btn-acao-topo:hover { opacity: 0.85; filter: brightness(1.1); }
 
         main { padding: 2rem 1rem; max-width: 900px; margin: 0 auto; width: 100%; flex: 1; z-index: 5; position: relative; }
-        .view { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .view { display: none; animation: fadeIn 0.4s ease-in-out; }
         .view.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
         h1 { color: var(--h1-color); font-size: 1.8rem; margin-bottom: 14px; font-family: 'Philosopher', serif; line-height: 1.25; }
         h2 { color: var(--h2-color); font-size: 1.25rem; margin-bottom: 10px; font-family: 'Philosopher', serif; }
         p { color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; font-size: 0.98rem; }
 
         .terminal-box {
-            background-color: var(--terminal-bg); border: 2px solid var(--h1-color); border-radius: 10px;
+            background-color: var(--terminal-bg); border: 1px solid var(--h2-color); border-radius: 10px;
             padding: 12px 14px; font-family: 'Share Tech Mono', monospace; font-size: 0.88rem;
-            color: var(--terminal-text); margin-bottom: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            color: var(--terminal-text); margin-bottom: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             word-break: break-word; z-index: 5; position: relative;
+            transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
         }
         .terminal-linha { margin-bottom: 4px; }
-        .terminal-prompt { color: var(--h2-color); }
+        .terminal-prompt { color: var(--h1-color); }
         
         .cursor-terminal::after {
             content: "|";
@@ -161,27 +202,27 @@
         .terminal-texto-principal { color: var(--terminal-body-color); margin-top: 4px; }
 
         .status-badge {
-            display: inline-flex; align-items: center; gap: 8px; background: transparent;
-            border: 2px solid #ff3366; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
-            color: #ffd166; margin-bottom: 14px; cursor: pointer; transition: transform 0.2s;
-            box-shadow: 0 0 10px rgba(255, 51, 102, 0.2); user-select: none; z-index: 5; position: relative;
+            display: inline-flex; align-items: center; gap: 8px; 
+            background: var(--glass-badge);
+            border: 1px solid var(--h2-color); padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+            color: var(--h2-color); margin-bottom: 14px; cursor: pointer; transition: transform 0.2s, background-color 0.4s ease;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.15); user-select: none; z-index: 5; position: relative;
         }
-        .status-badge:hover { transform: scale(1.02); background: rgba(255, 51, 102, 0.05); }
+        .status-badge:hover { transform: scale(1.02); filter: brightness(1.1); }
         .pulse-dot {
-            width: 7px; height: 7px; background-color: #ff3366; border-radius: 50%;
-            animation: pulse 1.5s infinite; box-shadow: 0 0 8px #ff3366;
+            width: 7px; height: 7px; background-color: var(--h2-color); border-radius: 50%;
+            animation: pulse 1.5s infinite; box-shadow: 0 0 8px var(--h2-color);
         }
         @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.3); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.8; } }
 
-        /* --- CARDS 100% TRANSPARENTES COM EFEITO SPOTLIGHT E TILT --- */
+        /* CARTÕES 100% TRANSPARENTES SEM FUMAÇA */
         .card, .projeto-card {
-            background-color: var(--card-bg) !important; 
+            background: transparent !important; 
             padding: 20px; margin-bottom: 18px;
-            border-radius: 14px; border: 2px solid var(--card-border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+            border-radius: 14px; border: 1px solid var(--card-border);
             position: relative; overflow: hidden;
             transform-style: preserve-3d; perspective: 1000px; 
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
             z-index: 5;
         }
 
@@ -196,10 +237,10 @@
         
         .card:hover, .projeto-card:hover { border-color: var(--h1-color); box-shadow: var(--card-shadow-hover); }
 
-        .foto-perfil { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--header-border); margin-bottom: 16px; }
+        .foto-perfil { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--card-border); margin-bottom: 16px; transition: border-color 0.4s ease; }
         
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 12px; }
-        .skill-item { background-color: var(--badge-bg); color: var(--badge-color); border: 1px solid var(--badge-border); padding: 10px 12px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; z-index: 5; position: relative; }
+        .skill-item { background-color: var(--badge-bg); color: var(--badge-color); border: 1px solid var(--badge-border); padding: 10px 12px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; z-index: 5; position: relative; transition: all 0.4s ease; }
 
         .cubo-container {
             width: 150px; height: 150px; margin: 30px auto; perspective: 700px; cursor: grab; z-index: 5; position: relative;
@@ -214,10 +255,12 @@
             100% { transform: rotateX(360deg) rotateY(360deg); }
         }
         .face-cubo {
-            position: absolute; width: 150px; height: 150px; background: rgba(138, 43, 226, 0.18);
+            position: absolute; width: 150px; height: 150px; 
+            background: var(--cubo-bg);
             border: 2px solid var(--h1-color); display: flex; align-items: center; justify-content: center;
             font-family: 'Share Tech Mono', monospace; font-weight: bold; font-size: 0.95rem; color: var(--h1-color);
-            box-shadow: inset 0 0 15px rgba(0, 245, 212, 0.2); text-align: center; padding: 8px;
+            box-shadow: inset 0 0 15px rgba(168, 85, 247, 0.2); text-align: center; padding: 8px;
+            transition: all 0.4s ease;
         }
         .frente  { transform: translateZ(75px); }
         .tras    { transform: rotateY(180deg) translateZ(75px); }
@@ -228,7 +271,8 @@
 
         .filtros-container { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; z-index: 5; position: relative; }
         .btn-filtro {
-            background: transparent; color: var(--text-color); border: 1px solid var(--card-border);
+            background: var(--glass-badge);
+            color: var(--text-color); border: 1px solid var(--card-border);
             padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.85rem;
             transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;
         }
@@ -236,69 +280,73 @@
 
         .projetos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
         .projeto-card { display: flex; flex-direction: column; gap: 12px; }
-        .projeto-card h3 { color: var(--project-title-color); font-size: 1.15rem; font-family: 'Philosopher', serif; z-index: 2; }
+        .projeto-card h3 { color: var(--project-title-color); font-size: 1.15rem; font-family: 'Philosopher', serif; z-index: 2; transition: color 0.4s ease; }
         .projeto-card p, .projeto-card .projeto-tags, .projeto-card .projeto-link { z-index: 2; }
         
         .projeto-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0; }
-        .tag { background: var(--badge-bg); color: var(--badge-color); font-size: 0.75rem; padding: 3px 8px; border-radius: 5px; font-weight: 600; border: 1px solid var(--badge-border); }
-        .projeto-link { color: var(--nav-link); font-size: 0.9rem; font-weight: bold; text-decoration: none; margin-top: auto; display: inline-flex; align-items: center; gap: 5px; }
+        .tag { background: var(--badge-bg); color: var(--badge-color); font-size: 0.75rem; padding: 3px 8px; border-radius: 5px; font-weight: 600; border: 1px solid var(--badge-border); transition: all 0.4s ease; }
+        .projeto-link { color: var(--h2-color); font-size: 0.9rem; font-weight: bold; text-decoration: none; margin-top: auto; display: inline-flex; align-items: center; gap: 5px; transition: color 0.4s ease; }
         .projeto-link:hover { color: var(--h1-color); text-decoration: underline; }
 
         .pong-container {
-            background: rgba(0, 0, 0, 0.25); border: 2px solid var(--h1-color); border-radius: 12px;
+            background: var(--glass-badge);
+            border: 1px solid var(--h1-color); border-radius: 12px;
             width: 100%; max-width: 100%; margin: 15px auto; display: flex; flex-direction: column;
-            align-items: center; padding: 12px; box-shadow: 0 10px 30px rgba(0, 245, 212, 0.15);
+            align-items: center; padding: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             z-index: 5; position: relative; overflow: hidden;
+            transition: all 0.4s ease;
         }
         .pong-barra-topo { display: flex; justify-content: space-between; width: 100%; margin-bottom: 8px; align-items: center; flex-wrap: wrap; gap: 6px; }
         .btn-pong-controle {
-            background: var(--h1-color); color: #0d0e15; border: none; padding: 5px 12px;
+            background: var(--btn-bg); color: var(--btn-text); border: none; padding: 5px 12px;
             border-radius: 5px; font-weight: bold; font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 0.8rem;
+            transition: filter 0.4s ease;
         }
-        .btn-pong-controle:hover { opacity: 0.85; }
-        #pong-canvas { background: #090a0f; border: 1px solid #2d2448; display: block; width: 100%; max-width: 480px; height: 260px; }
-        .pong-controles-info { color: #38bdf8; font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; margin-top: 8px; text-align: center; }
+        .btn-pong-controle:hover { filter: brightness(1.1); }
+        #pong-canvas { background: #06030e; border: 1px solid var(--card-border); display: block; width: 100%; max-width: 480px; height: 260px; border-radius: 4px; transition: border-color 0.4s ease; }
+        .pong-controles-info { color: var(--text-color); font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; margin-top: 8px; text-align: center; }
 
         .badges-contato { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; margin-bottom: 14px; z-index: 5; position: relative; }
         .badge-contato {
-            display: inline-flex; align-items: center; gap: 10px; background: var(--card-bg);
-            color: var(--text-color); border: 2px solid var(--card-border); padding: 12px 18px;
+            display: inline-flex; align-items: center; gap: 10px; 
+            background: var(--glass-badge);
+            color: var(--text-color); border: 1px solid var(--card-border); padding: 12px 18px;
             border-radius: 25px; font-weight: 600; font-size: 0.9rem; text-decoration: none;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04); transition: all 0.3s ease; cursor: pointer; justify-content: center;
             -webkit-tap-highlight-color: transparent;
         }
-        .badge-contato svg { width: 18px; height: 18px; fill: var(--h1-color); transition: transform 0.3s; flex-shrink: 0; }
+        .badge-contato svg { width: 18px; height: 18px; fill: var(--h2-color); transition: fill 0.4s ease, transform 0.3s; flex-shrink: 0; }
         .badge-contato:hover { border-color: var(--h1-color); color: var(--h1-color); transform: translateY(-2px); }
 
         form { display: flex; flex-direction: column; gap: 14px; width: 100%; margin-top: 14px; z-index: 5; position: relative; }
         .form-group { display: flex; flex-direction: column; gap: 5px; }
-        label { font-weight: bold; color: var(--text-color); font-size: 0.9rem; }
+        label { font-weight: bold; color: var(--text-color); font-size: 0.9rem; transition: color 0.4s ease; }
         input, textarea {
             width: 100%; padding: 11px 13px; border-radius: 8px; border: 1px solid var(--input-border);
-            background: var(--input-bg); color: var(--text-color); font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.3s;
+            background: var(--input-bg); color: var(--text-color); font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.4s ease;
         }
-        input:focus, textarea:focus { border-color: var(--h1-color); box-shadow: 0 0 0 3px rgba(29,78,216,0.15); }
+        input:focus, textarea:focus { border-color: var(--h1-color); box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25); }
 
         button[type="submit"] {
             padding: 11px 20px; background-color: var(--btn-bg); color: var(--btn-text);
-            font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; width: 100%; text-align: center;
+            font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; width: 100%; text-align: center;
         }
-        button[type="submit"]:hover { opacity: 0.9; }
+        button[type="submit"]:hover { filter: brightness(1.1); }
 
         #btn-topo {
             position: fixed; bottom: 20px; left: 20px; z-index: 9998;
-            background: var(--header-bg); color: var(--h1-color); border: 2px solid var(--header-border);
+            background: var(--header-bg); color: var(--h1-color); border: 1px solid var(--header-border);
             width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(10px);
+            font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
         }
         #btn-topo.visivel { opacity: 1; visibility: visible; }
 
         #toast-container { position: fixed; bottom: 20px; right: 15px; left: 15px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
         .toast {
-            background: var(--header-bg); color: var(--text-color); border: 2px solid var(--h1-color);
-            padding: 12px 18px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            font-weight: 600; font-size: 0.9rem; animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards; backdrop-filter: blur(10px);
+            background: var(--header-bg); color: var(--header-text); border: 1px solid var(--h1-color);
+            padding: 12px 18px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-weight: 600; font-size: 0.9rem; animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
             text-align: center; width: 100%; max-width: 380px; pointer-events: auto;
         }
         @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -306,13 +354,12 @@
 
         footer { 
             position: fixed; bottom: 0; left: 0; width: 100%;
-            text-align: center; padding: 0.8rem 1rem; border-top: 2px solid var(--header-border); 
+            text-align: center; padding: 0.8rem 1rem; border-top: 1px solid var(--header-border); 
             color: var(--header-text); font-size: 0.8rem; background-color: var(--header-bg); 
             display: flex; flex-direction: column; gap: 4px; 
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            z-index: 9990; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 9990; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
         }
-        html.claro footer { color: #1e40af; }
 
         @media screen and (min-width: 640px) {
             body { padding-top: 90px; padding-bottom: 80px; }
@@ -344,7 +391,7 @@
         <div class="controles-topo">
             <button id="btn-audio" class="btn-acao-topo" onclick="toggleAudio()" title="Som"><span>🔊</span></button>
             <button id="tema" class="btn-acao-topo" onclick="toggleTheme()" title="Tema">
-                <span class="icone">☀</span> <span class="texto-btn">Claro</span>
+                <span class="icone">☾</span> <span class="texto-btn">Escuro</span>
             </button>
         </div>
     </header>
@@ -369,8 +416,8 @@
                 <h2>Objetivo Profissional</h2>
                 <p>Estudante focado em buscar oportunidade de <strong>Estágio em TI / Suporte Técnico (Help Desk) / Quality Assurance (QA)</strong>. Possuo sólida base em lógica de programação, resolução de chamados, triagem de erros e desenvolvimento web.</p>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
-                    <button onclick="navigateTo('projetos')" style="padding: 10px 18px; background: var(--btn-bg); color: var(--btn-text); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem;">Ver Projetos & Mini-Game</button>
-                    <button onclick="navigateTo('contato')" style="padding: 10px 18px; background: transparent; color: var(--h1-color); border: 2px solid var(--h1-color); border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem;">Entrar em Contato</button>
+                    <button onclick="navigateTo('projetos')" style="padding: 10px 18px; background: var(--btn-bg); color: var(--btn-text); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: filter 0.3s;">Ver Projetos & Mini-Game</button>
+                    <button onclick="navigateTo('contato')" style="padding: 10px 18px; background: transparent; color: var(--h1-color); border: 2px solid var(--h1-color); border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;">Entrar em Contato</button>
                 </div>
             </div>
 
@@ -395,7 +442,6 @@
                 Capacitação técnica prática em Desenvolvimento Front-End (HTML5, CSS3, JavaScript).</p>
             </div>
 
-            <!-- Cubo 3D Interativo de Tecnologias -->
             <div class="card" style="text-align: center;">
                 <h2>Tecnologias em Destaque (Cubo 3D)</h2>
                 <p style="font-size: 0.85rem; margin-bottom: 4px;">Clica e arrasta para girar o cubo interativo em 3D!</p>
@@ -474,7 +520,6 @@
                     <a href="https://github.com/vitorns-dev" target="_blank" class="projeto-link">Ver Repositório no GitHub &rarr;</a>
                 </div>
 
-                <!-- Mini-Game Pong Card -->
                 <div class="projeto-card" data-categoria="game" style="grid-column: 1 / -1;">
                     <h3>🎯 Mini-Game: Pong Retro (Easter Egg)</h3>
                     <p>Joga diretamente no portfólio! Usa as teclas <strong>W / S</strong> ou as <strong>Setas</strong> para controlar a raquete. Pressiona <strong>Espaço</strong> ou o botão para Pausar/Retomar.</p>
@@ -537,11 +582,11 @@
 
     <footer>
         <p class="copyright">&copy; 2026 Vitor Nascimento dos Santos. Todos os direitos reservados.</p>
-        <p id="sessao-timer" style="font-size: 0.78rem; color: #38bdf8;">Tempo na página: 0s</p>
+        <p id="sessao-timer" style="font-size: 0.78rem; font-family: 'Share Tech Mono', monospace; font-weight: bold; color: var(--h1-color); transition: color 0.4s ease;">Tempo na página: 0s</p>
     </footer>
 
     <script>
-        let audioAtivo = true;
+        let audioAtivo = false;
         let audioCtx = null;
 
         function tatearSom(freq = 440, tipo = 'sine', duracao = 0.08) {
@@ -566,7 +611,7 @@
             const btn = document.getElementById('btn-audio');
             btn.innerHTML = audioAtivo ? "<span>🔊</span>" : "<span>🔇</span>";
             mostrarToast(audioAtivo ? "🔊 Som ativado!" : "🔇 Som desativado.");
-            tatearSom(600, 'triangle', 0.1);
+            if(audioAtivo) tatearSom(600, 'triangle', 0.1);
         }
 
         const estadosStatus = [
@@ -582,6 +627,22 @@
             if (spanTexto) spanTexto.textContent = estadosStatus[indiceStatus];
             tatearSom(700, 'sine', 0.1);
             mostrarToast("🔄 Status atualizado com sucesso!");
+        }
+
+        function filtrarProjetos(categoria, evento) {
+            tatearSom(500, 'sine', 0.05);
+            document.querySelectorAll('.btn-filtro').forEach(btn => btn.classList.remove('ativo'));
+            if(evento) evento.target.classList.add('ativo');
+            
+            document.querySelectorAll('.projeto-card').forEach(card => {
+                const catCard = card.getAttribute('data-categoria');
+                if (categoria === 'todos' || catCard === categoria) {
+                    card.style.display = 'flex';
+                    card.style.animation = 'fadeIn 0.4s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
 
         const canvasPart = document.getElementById('canvas-particulas');
@@ -635,12 +696,12 @@
             const gradFundo = ctxPart.createLinearGradient(0, 0, canvasPart.width, canvasPart.height);
             if (isClaro) {
                 gradFundo.addColorStop(0, '#f8fafc');
-                gradFundo.addColorStop(0.5, '#e2e8f0');
-                gradFundo.addColorStop(1, '#cbd5e1');
+                gradFundo.addColorStop(0.5, '#f1f5f9');
+                gradFundo.addColorStop(1, '#e2e8f0');
             } else {
-                gradFundo.addColorStop(0, '#05060a');
-                gradFundo.addColorStop(0.5, '#120d20');
-                gradFundo.addColorStop(1, '#030406');
+                gradFundo.addColorStop(0, '#06030e');
+                gradFundo.addColorStop(0.5, '#14082b');
+                gradFundo.addColorStop(1, '#030107');
             }
             ctxPart.fillStyle = gradFundo;
             ctxPart.fillRect(0, 0, canvasPart.width, canvasPart.height);
@@ -649,7 +710,7 @@
             ctxPart.lineWidth = 1;
             for (let i = 0; i < 2; i++) {
                 ctxPart.beginPath();
-                ctxPart.strokeStyle = isClaro ? `rgba(29, 78, 216, ${0.06 + i * 0.02})` : `rgba(138, 43, 226, ${0.15 + i * 0.05})`;
+                ctxPart.strokeStyle = isClaro ? `rgba(147, 51, 234, ${0.08 + i * 0.03})` : `rgba(168, 85, 247, ${0.15 + i * 0.05})`;
                 for (let x = 0; x < canvasPart.width; x += 50) {
                     let y = canvasPart.height * 0.5 + Math.sin(x * 0.003 + anguloNebulosa + i) * 70 + Math.cos(x * 0.005 - anguloNebulosa) * 35;
                     if (x === 0) ctxPart.moveTo(x, y);
@@ -663,7 +724,7 @@
                 if (p.alpha > 0) {
                     ctxPart.beginPath();
                     ctxPart.arc(p.x, p.y, p.raio, 0, Math.PI * 2);
-                    ctxPart.fillStyle = isClaro ? `rgba(29, 78, 216, ${p.alpha * 0.5})` : `rgba(0, 245, 212, ${p.alpha})`;
+                    ctxPart.fillStyle = isClaro ? `rgba(147, 51, 234, ${p.alpha * 0.5})` : `rgba(192, 132, 252, ${p.alpha})`;
                     ctxPart.fill();
                 }
             });
@@ -685,14 +746,13 @@
 
                 ctxPart.beginPath();
                 ctxPart.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
-                ctxPart.fillStyle = isClaro ? `rgba(30, 64, 175, ${e.alpha})` : `rgba(0, 245, 212, ${e.alpha})`;
+                ctxPart.fillStyle = isClaro ? `rgba(147, 51, 234, ${e.alpha})` : `rgba(192, 132, 252, ${e.alpha})`;
                 ctxPart.fill();
             }
             requestAnimationFrame(animarUniverso);
         }
         animarUniverso();
 
-        /* --- EFEITO SPOTLIGHT E TILT (MOUSE E TOQUE) --- */
         function processarMovimentoPointer(clientX, clientY) {
             document.querySelectorAll('.card, .projeto-card').forEach(card => {
                 const rect = card.getBoundingClientRect();
@@ -718,15 +778,8 @@
             });
         }
 
-        document.addEventListener('mousemove', (e) => {
-            processarMovimentoPointer(e.clientX, e.clientY);
-        });
-
-        document.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                processarMovimentoPointer(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        });
+        document.addEventListener('mousemove', (e) => { processarMovimentoPointer(e.clientX, e.clientY); });
+        document.addEventListener('touchmove', (e) => { if (e.touches.length > 0) processarMovimentoPointer(e.touches[0].clientX, e.touches[0].clientY); });
 
         const textoTerminal = "git status --profile";
         let indiceTerminal = 0;
@@ -734,7 +787,6 @@
         function iniciarDigitacaoTerminal() {
             const elementoTerminal = document.getElementById('terminal-digitado');
             if (!elementoTerminal) return;
-            
             if (indiceTerminal < textoTerminal.length) {
                 elementoTerminal.textContent += textoTerminal.charAt(indiceTerminal);
                 indiceTerminal++;
@@ -798,7 +850,6 @@
 
         window.addEventListener('keydown', (e) => {
             if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-
             if (e.key === '1') navigateTo('inicio');
             if (e.key === '2') navigateTo('sobre');
             if (e.key === '3') navigateTo('projetos');
@@ -810,7 +861,6 @@
                 togglePausarPong();
                 return;
             }
-
             if (!pongGame.ativo) return;
 
             if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') {
@@ -867,10 +917,10 @@
         }
 
         function desenharPong() {
-            pongCtx.fillStyle = '#090a0f';
+            pongCtx.fillStyle = '#06030e';
             pongCtx.fillRect(0, 0, pongCanvas.width, pongCanvas.height);
 
-            pongCtx.strokeStyle = '#2d2448';
+            pongCtx.strokeStyle = '#2d1b4e';
             pongCtx.setLineDash([4, 4]);
             pongCtx.beginPath();
             pongCtx.moveTo(pongCanvas.width / 2, 0);
@@ -878,10 +928,10 @@
             pongCtx.stroke();
             pongCtx.setLineDash([]);
 
-            pongCtx.fillStyle = '#00f5d4';
+            pongCtx.fillStyle = '#c084fc';
             pongCtx.fillRect(pongGame.jogador.x, pongGame.jogador.y, pongGame.jogador.w, pongGame.jogador.h);
             
-            pongCtx.fillStyle = '#ff5c8a';
+            pongCtx.fillStyle = '#f43f5e';
             pongCtx.fillRect(pongGame.ia.x, pongGame.ia.y, pongGame.ia.w, pongGame.ia.h);
 
             pongCtx.fillStyle = '#ffd166';
@@ -890,7 +940,7 @@
             pongCtx.fill();
 
             pongCtx.font = '20px "Share Tech Mono", monospace';
-            pongCtx.fillStyle = '#38bdf8';
+            pongCtx.fillStyle = '#c084fc';
             pongCtx.fillText(pongGame.pontosJogador, pongCanvas.width / 2 - 45, 26);
             pongCtx.fillText(pongGame.pontosIA, pongCanvas.width / 2 + 30, 26);
 
@@ -936,7 +986,7 @@
         function updateThemeButton(isClaro) {
             const btn = document.getElementById('tema');
             if (!btn) return;
-            btn.innerHTML = isClaro ? '<span class="icone">☾</span> <span class="texto-btn">Escuro</span>' : '<span class="icone">☀</span> <span class="texto-btn">Claro</span>';
+            btn.innerHTML = isClaro ? '<span class="icone">☀</span> <span class="texto-btn">Claro</span>' : '<span class="icone">☾</span> <span class="texto-btn">Escuro</span>';
         }
 
         function mostrarToast(mensagem) {
@@ -996,12 +1046,16 @@
         }, 1000);
 
         window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('btn-audio').innerHTML = "<span>🔇</span>";
             setTimeout(iniciarDigitacaoTerminal, 300);
 
             const temaSalvo = localStorage.getItem('tema');
             if (temaSalvo === 'claro') {
                 document.documentElement.classList.add('claro');
                 updateThemeButton(true);
+            } else {
+                document.documentElement.classList.remove('claro');
+                updateThemeButton(false);
             }
         });
     </script>
