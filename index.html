@@ -20,7 +20,7 @@
             --text-muted: #94a3b8;
             
             /* Cabeçalho roxo escuro elegante */
-            --header-bg: rgba(12, 6, 24, 0.92);
+            --header-bg: rgba(12, 6, 24, 0.95);
             --header-border: rgba(192, 132, 252, 0.4);
             
             --logo-color: #c084fc;       /* Cor da Logo no Escuro */
@@ -70,14 +70,14 @@
             --text-muted: #475569;               
             
             /* Barra de navegação e rodapé ESCUROS no modo claro */
-            --header-bg: rgba(15, 23, 42, 0.95); 
+            --header-bg: rgba(15, 23, 42, 0.97); 
             --header-border: rgba(147, 51, 234, 0.4);            
             
             --logo-color: #38bdf8;       /* Cor da Logo no Modo Claro */
             --nav-link: #38bdf8;         /* Texto do Nav no Modo Claro (Azul Ciano) */
             --nav-hover: #ffffff;                
             
-            /* BOTÃO DE TEMA NO MODO CLARO (Garantindo contraste legível) */
+            /* BOTÃO DE TEMA NO MODO CLARO */
             --btn-tema-bg: rgba(147, 51, 234, 0.15);
             --btn-tema-color: #f8fafc;
             --btn-tema-border: rgba(147, 51, 234, 0.6);
@@ -129,7 +129,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding-top: 85px;
+            padding-top: 115px; /* Ajustado para dar folga ao cabeçalho empilhado no mobile */
             padding-bottom: 2rem; 
             position: relative;
         }
@@ -144,10 +144,11 @@
             pointer-events: none;
         }
 
+        /* CABEÇALHO RESPONSIVO (EMPILHADO NO MOBILE) */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.8rem 1.5rem; background-color: var(--header-bg);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 10px; padding: 0.8rem 1rem; background-color: var(--header-bg);
             border-bottom: 1px solid var(--header-border); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             z-index: 9999; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             transition: background-color 0.4s ease, border-color 0.4s ease;
@@ -155,16 +156,20 @@
 
         .logo {
             color: var(--logo-color); font-weight: bold; margin: 0;
-            font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1.1rem; user-select: none;
+            font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1rem; user-select: none;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
-            transition: color 0.4s ease;
+            transition: color 0.4s ease; text-align: center;
         }
 
-        nav { display: flex; gap: 16px; align-items: center; }
+        .menu-topo-wrapper {
+            display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 8px; flex-wrap: wrap;
+        }
+
+        nav { display: flex; gap: 12px; align-items: center; justify-content: center; flex: 1; }
         nav a {
             position: relative; text-decoration: none; color: var(--nav-link);
-            font-weight: 600; font-size: 0.92rem; padding: 6px 4px; cursor: pointer; transition: color 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
+            font-weight: 600; font-size: 0.85rem; padding: 4px 2px; cursor: pointer; transition: color 0.3s ease;
+            -webkit-tap-highlight-color: transparent; white-space: nowrap;
         }
         
         nav a::after {
@@ -174,10 +179,10 @@
         nav a:hover::after, nav a.ativo::after { width: 100%; }
         nav a:hover, nav a.ativo { color: var(--nav-hover) !important; }
 
-        .controles-topo { display: flex; gap: 8px; align-items: center; }
+        .controles-topo { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
         .btn-acao-topo {
-            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-            padding: 6px 10px; font-family: inherit; font-size: 12px; font-weight: bold;
+            display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+            padding: 5px 8px; font-family: inherit; font-size: 11px; font-weight: bold;
             border-radius: 20px; cursor: pointer; 
             background-color: var(--btn-tema-bg);
             color: var(--btn-tema-color); 
@@ -390,10 +395,19 @@
             position: relative; 
         }
 
-        @media screen and (min-width: 640px) {
+        /* AJUSTES PARA COMPUTADORES (Telas Maiores) */
+        @media screen and (min-width: 768px) {
             body { padding-top: 90px; }
-            header { padding: 1rem 2rem; }
-            .logo { font-size: 1.25rem; }
+            header { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                padding: 1rem 2rem; 
+                gap: 0;
+            }
+            .logo { font-size: 1.25rem; text-align: left; }
+            .menu-topo-wrapper { width: auto; gap: 16px; }
+            nav { justify-content: flex-start; flex: unset; gap: 16px; }
+            nav a { font-size: 0.92rem; padding: 6px 4px; }
             main { padding: 2.5rem 2rem; }
             h1 { font-size: 2.2rem; }
             .badges-contato { flex-direction: row; flex-wrap: wrap; }
@@ -420,17 +434,19 @@
 
     <header>
         <h3 class="logo" onclick="easterEggLogo()" title="Dica: Clique 5 vezes aqui!">&lt;Vitor Nascimento /&gt;</h3>
-        <nav>
-            <a onclick="navigateTo('inicio')" ontouchend="navigateTo('inicio'); event.preventDefault();" id="link-inicio" class="ativo">Início</a>
-            <a onclick="navigateTo('sobre')" ontouchend="navigateTo('sobre'); event.preventDefault();" id="link-sobre">Sobre</a>
-            <a onclick="navigateTo('projetos')" ontouchend="navigateTo('projetos'); event.preventDefault();" id="link-projetos">Projetos</a>
-            <a onclick="navigateTo('contato')" ontouchend="navigateTo('contato'); event.preventDefault();" id="link-contato">Contato</a>
-        </nav>
-        <div class="controles-topo">
-            <button id="btn-audio" class="btn-acao-topo" onclick="toggleAudio()" title="Som"><span>🔊</span></button>
-            <button id="tema" class="btn-acao-topo" onclick="toggleTheme()" title="Tema">
-                <span class="icone">☾</span> <span class="texto-btn">Escuro</span>
-            </button>
+        <div class="menu-topo-wrapper">
+            <nav>
+                <a onclick="navigateTo('inicio')" ontouchend="navigateTo('inicio'); event.preventDefault();" id="link-inicio" class="ativo">Início</a>
+                <a onclick="navigateTo('sobre')" ontouchend="navigateTo('sobre'); event.preventDefault();" id="link-sobre">Sobre</a>
+                <a onclick="navigateTo('projetos')" ontouchend="navigateTo('projetos'); event.preventDefault();" id="link-projetos">Projetos</a>
+                <a onclick="navigateTo('contato')" ontouchend="navigateTo('contato'); event.preventDefault();" id="link-contato">Contato</a>
+            </nav>
+            <div class="controles-topo">
+                <button id="btn-audio" class="btn-acao-topo" onclick="toggleAudio()" title="Som"><span>🔊</span></button>
+                <button id="tema" class="btn-acao-topo" onclick="toggleTheme()" title="Tema">
+                    <span class="icone">☾</span> <span class="texto-btn">Escuro</span>
+                </button>
+            </div>
         </div>
     </header>
 
