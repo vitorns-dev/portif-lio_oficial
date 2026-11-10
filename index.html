@@ -21,18 +21,24 @@
             
             /* Cabeçalho roxo escuro elegante */
             --header-bg: rgba(12, 6, 24, 0.92);
-            --header-text: #f8fafc;
             --header-border: rgba(192, 132, 252, 0.4);
             
-            --nav-link: #e2e8f0;
-            --nav-hover: #ffffff;
+            --logo-color: #c084fc;       /* Cor da Logo no Escuro */
+            --nav-link: #ffd166;         /* Texto do Nav no Escuro (Amarelo Ouro) */
+            --nav-hover: #ffffff;        /* Branco ao passar o rato */
             
+            /* BOTÃO DE TEMA NO MODO ESCURO */
+            --btn-tema-bg: rgba(255, 255, 255, 0.1);
+            --btn-tema-color: #f8fafc;
+            --btn-tema-border: rgba(192, 132, 252, 0.4);
+
             /* CORES SEPARADAS NO MODO ESCURO */
             --h1-color: #c084fc;           /* Títulos H1 (Roxo Neon) */
             --h2-color: #38bdf8;           /* Títulos H2 (Azul Ciano) */
+            --h3-color: #f43f5e;           /* Títulos H3 dos cartões (Rosa Choque) */
             --badge-color: #34d399;        /* Badges / Tech (Verde Esmeralda) */
             --status-text-color: #ffd166;  /* Texto do Status (Amarelo Ouro) */
-            --nav-indicator: #ffd166;      /* Barrinha deslizante do NAV (Amarelo Ouro) */
+            --nav-indicator: #38bdf8;      /* Barrinha deslizante do NAV (Azul Ciano) */
             
             /* CARTÕES 100% TRANSPARENTES (SEM FUMAÇA) */
             --card-bg: transparent !important; 
@@ -48,7 +54,6 @@
             
             --btn-bg: #9333ea;
             --btn-text: #ffffff;
-            --project-title-color: #f43f5e;
             
             --spotlight-color: rgba(168, 85, 247, 0.15);
             --card-shadow-hover: 0 10px 30px rgba(168, 85, 247, 0.18);
@@ -66,15 +71,21 @@
             
             /* Barra de navegação e rodapé ESCUROS no modo claro */
             --header-bg: rgba(15, 23, 42, 0.95); 
-            --header-text: #f8fafc;              
             --header-border: rgba(147, 51, 234, 0.4);            
             
-            --nav-link: #cbd5e1;                 
+            --logo-color: #38bdf8;       /* Cor da Logo no Modo Claro */
+            --nav-link: #38bdf8;         /* Texto do Nav no Modo Claro (Azul Ciano) */
             --nav-hover: #ffffff;                
             
+            /* BOTÃO DE TEMA NO MODO CLARO (Garantindo contraste legível) */
+            --btn-tema-bg: rgba(147, 51, 234, 0.15);
+            --btn-tema-color: #f8fafc;
+            --btn-tema-border: rgba(147, 51, 234, 0.6);
+
             /* CORES SEPARADAS NO MODO CLARO */
             --h1-color: #7c3aed;           /* Títulos H1 (Roxo Fechado) */
             --h2-color: #0284c7;           /* Títulos H2 (Azul Profundo) */
+            --h3-color: #be185d;           /* Títulos H3 dos cartões (Rosa Escuro) */
             --badge-color: #059669;        /* Badges / Tech (Verde Escuro) */
             --status-text-color: #be185d;  /* Texto do Status (Rosa Escuro) */
             --nav-indicator: #f43f5e;      /* Barrinha deslizante do NAV (Rosa Brilhante) */
@@ -93,7 +104,6 @@
             
             --btn-bg: #7c3aed;                   
             --btn-text: #ffffff;                 
-            --project-title-color: #be185d;      
             
             --spotlight-color: rgba(147, 51, 234, 0.08);
             --card-shadow-hover: 0 10px 25px rgba(147, 51, 234, 0.12);
@@ -120,7 +130,6 @@
             flex-direction: column;
             justify-content: space-between;
             padding-top: 85px;
-            /* No telemóvel fica com respiro natural, sem padding fixo excessivo */
             padding-bottom: 2rem; 
             position: relative;
         }
@@ -145,9 +154,10 @@
         }
 
         .logo {
-            color: var(--header-text); font-weight: bold; margin: 0;
+            color: var(--logo-color); font-weight: bold; margin: 0;
             font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1.1rem; user-select: none;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+            transition: color 0.4s ease;
         }
 
         nav { display: flex; gap: 16px; align-items: center; }
@@ -168,8 +178,10 @@
         .btn-acao-topo {
             display: inline-flex; align-items: center; justify-content: center; gap: 6px;
             padding: 6px 10px; font-family: inherit; font-size: 12px; font-weight: bold;
-            border-radius: 20px; cursor: pointer; background-color: rgba(255, 255, 255, 0.1);
-            color: var(--header-text); border: 1px solid var(--header-border);
+            border-radius: 20px; cursor: pointer; 
+            background-color: var(--btn-tema-bg);
+            color: var(--btn-tema-color); 
+            border: 1px solid var(--btn-tema-border);
             transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;
         }
         .btn-acao-topo:hover { opacity: 0.85; filter: brightness(1.1); }
@@ -181,6 +193,7 @@
 
         h1 { color: var(--h1-color); font-size: 1.8rem; margin-bottom: 14px; font-family: 'Philosopher', serif; line-height: 1.25; }
         h2 { color: var(--h2-color); font-size: 1.25rem; margin-bottom: 10px; font-family: 'Philosopher', serif; }
+        h3 { color: var(--h3-color); font-size: 1.15rem; margin-bottom: 10px; font-family: 'Philosopher', serif; transition: color 0.4s ease; }
         p { color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; font-size: 0.98rem; }
 
         .terminal-box {
@@ -288,7 +301,7 @@
 
         .projetos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 16px; }
         .projeto-card { display: flex; flex-direction: column; gap: 12px; }
-        .projeto-card h3 { color: var(--project-title-color); font-size: 1.15rem; font-family: 'Philosopher', serif; z-index: 2; transition: color 0.4s ease; }
+        .projeto-card h3 { z-index: 2; }
         .projeto-card p, .projeto-card .projeto-tags, .projeto-card .projeto-link { z-index: 2; }
         
         .projeto-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0; }
@@ -360,7 +373,6 @@
         @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes fadeOut { to { opacity: 0; transform: translateY(10px); } }
 
-        /* RODAPÉ INTELIGENTE: Relative no telemóvel, Fixed apenas em telas maiores (PCs/Tablets) */
         footer { 
             width: 100%;
             text-align: center; 
@@ -375,7 +387,7 @@
             z-index: 9990; 
             box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
             transition: background-color 0.4s ease, border-color 0.4s ease;
-            position: relative; /* No telemóvel flui naturalmente no final da página */
+            position: relative; 
         }
 
         @media screen and (min-width: 640px) {
@@ -390,7 +402,6 @@
             #toast-container { left: auto; right: 25px; bottom: 25px; align-items: flex-end; }
             .toast { text-align: left; }
             
-            /* Em computadores/tablets, o rodapé fica fixo na parte inferior */
             footer { 
                 position: fixed; 
                 bottom: 0; 
@@ -408,7 +419,7 @@
     <canvas id="canvas-particulas"></canvas>
 
     <header>
-        <h3 class="logo" onclick="navigateTo('inicio'); easterEggLogo();" title="Dica: Clique 5 vezes aqui!">&lt;Vitor Nascimento /&gt;</h3>
+        <h3 class="logo" onclick="easterEggLogo()" title="Dica: Clique 5 vezes aqui!">&lt;Vitor Nascimento /&gt;</h3>
         <nav>
             <a onclick="navigateTo('inicio')" ontouchend="navigateTo('inicio'); event.preventDefault();" id="link-inicio" class="ativo">Início</a>
             <a onclick="navigateTo('sobre')" ontouchend="navigateTo('sobre'); event.preventDefault();" id="link-sobre">Sobre</a>
