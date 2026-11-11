@@ -23,7 +23,7 @@
             --header-bg: rgba(12, 6, 24, 0.95);
             --header-border: rgba(192, 132, 252, 0.4);
             
-            --logo-color: #c084fc;       /* Cor da Logo no Escuro */
+            --logo-color: #c084fc;       /* Cor da Logo no Escuro (Roxo Neon) */
             --nav-link: #ffd166;         /* Texto do Nav no Escuro (Amarelo Ouro) */
             --nav-hover: #ffffff;        /* Branco ao passar o rato */
             
@@ -73,7 +73,7 @@
             --header-bg: rgba(15, 23, 42, 0.97); 
             --header-border: rgba(147, 51, 234, 0.4);            
             
-            --logo-color: #38bdf8;       /* Cor da Logo no Modo Claro */
+            --logo-color: #f43f5e;       /* Cor da Logo no Modo Claro (Rosa Vibrante) */
             --nav-link: #38bdf8;         /* Texto do Nav no Modo Claro (Azul Ciano) */
             --nav-hover: #ffffff;                
             
@@ -113,6 +113,22 @@
             --terminal-body-color: #f1f5f9;       
         }
 
+        /* --- MODO SCI-FI ATIVADO (EASTER EGG) --- */
+        html.sci-fi-ativo {
+            --bg-body: #021a12 !important;
+            --text-color: #a7f3d0 !important;
+            --h1-color: #34d399 !important;
+            --h2-color: #10b981 !important;
+            --h3-color: #059669 !important;
+            --logo-color: #34d399 !important;
+            --nav-link: #34d399 !important;
+            --nav-hover: #ffffff !important;
+            --card-border: rgba(52, 211, 153, 0.6) !important;
+            --spotlight-color: rgba(52, 211, 153, 0.25) !important;
+            --header-bg: rgba(2, 26, 18, 0.95) !important;
+            --header-border: rgba(52, 211, 153, 0.5) !important;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         html, body {
@@ -129,7 +145,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding-top: 115px; /* Ajustado para dar folga ao cabeçalho empilhado no mobile */
+            padding-top: 115px;
             padding-bottom: 2rem; 
             position: relative;
         }
@@ -144,7 +160,7 @@
             pointer-events: none;
         }
 
-        /* CABEÇALHO RESPONSIVO (EMPILHADO NO MOBILE) */
+        /* CABEÇALHO RESPONSIVO */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -248,7 +264,7 @@
             border-radius: 14px; border: 1px solid var(--card-border);
             position: relative; overflow: hidden;
             transform-style: preserve-3d; perspective: 1000px; 
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: box-shadow 0.4s ease;
             z-index: 5;
         }
 
@@ -261,10 +277,16 @@
         .card:hover::before, .projeto-card:hover::before,
         .card.ativo-touch::before, .projeto-card.ativo-touch::before { opacity: 1; }
         
-        .card:hover, .projeto-card:hover { border-color: var(--h1-color); box-shadow: var(--card-shadow-hover); }
+        .card:hover, .projeto-card:hover { box-shadow: var(--card-shadow-hover); }
 
         .foto-perfil { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--card-border); margin-bottom: 16px; transition: border-color 0.4s ease; }
         
+        .skill-stats-container { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+        .skill-row { display: flex; flex-direction: column; gap: 4px; }
+        .skill-info-bar { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: var(--text-color); font-family: 'Share Tech Mono', monospace; }
+        .skill-bar-bg { width: 100%; height: 8px; background: var(--glass-badge); border-radius: 4px; border: 1px solid var(--card-border); overflow: hidden; }
+        .skill-bar-fill { height: 100%; background: linear-gradient(90deg, var(--h2-color), var(--h1-color)); width: 0%; border-radius: 4px; transition: width 1.2s cubic-bezier(0.1, 1, 0.1, 1); }
+
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 12px; }
         .skill-item { background-color: var(--badge-bg); color: var(--badge-color); border: 1px solid var(--badge-border); padding: 10px 12px; border-radius: 8px; font-weight: 600; font-size: 0.88rem; z-index: 5; position: relative; transition: all 0.4s ease; }
 
@@ -353,14 +375,139 @@
         }
         input:focus, textarea:focus { border-color: var(--h1-color); box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25); }
 
-        button[type="submit"] {
-            padding: 11px 20px; background-color: var(--btn-bg); color: var(--btn-text);
-            font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease; width: 100%; text-align: center;
+        button[type="submit"], .magnetic-btn {
+            position: relative;
+            padding: 12px 24px;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            font-weight: bold;
+            border: 1px solid var(--h1-color);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            overflow: hidden;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+            letter-spacing: 0.5px;
+            animation: conviteBrilho 2.2s infinite ease-in-out;
+            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease, box-shadow 0.3s ease;
         }
-        button[type="submit"]:hover { filter: brightness(1.1); }
+
+        @keyframes conviteBrilho {
+            0%, 100% {
+                box-shadow: 0 0 8px rgba(168, 85, 247, 0.3), inset 0 0 6px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), inset 0 0 12px rgba(255, 255, 255, 0.35);
+                border-color: #ffffff;
+            }
+        }
+
+        button[type="submit"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s ease;
+        }
+
+        button[type="submit"]:hover::before {
+            left: 100%;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-3px) scale(1.01);
+            animation: none;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.7);
+            filter: brightness(1.2);
+        }
+
+        button[type="submit"]:hover .icone-foguete {
+            display: inline-block;
+            animation: lancarFoguete 0.6s ease infinite alternate;
+        }
+
+        @keyframes lancarFoguete {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-4px) rotate(10deg); }
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: efeitoRipple 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        @keyframes efeitoRipple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* --- COMMAND PALETTE MODAL (CTRL + K) --- */
+        #cmd-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(3, 1, 8, 0.75); backdrop-filter: blur(8px);
+            z-index: 99999; display: flex; align-items: flex-start; justify-content: center;
+            padding-top: 15vh; opacity: 0; visibility: hidden; transition: all 0.25s ease;
+        }
+        #cmd-overlay.aberto { opacity: 1; visibility: visible; }
+        .cmd-modal {
+            background: var(--header-bg); border: 1px solid var(--h1-color);
+            width: 90%; max-width: 500px; border-radius: 12px; box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+            overflow: hidden; display: flex; flex-direction: column;
+        }
+        .cmd-input-box {
+            padding: 14px 18px; border-bottom: 1px solid var(--card-border);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .cmd-input-box input {
+            background: transparent; border: none; outline: none; color: var(--text-color);
+            font-size: 1rem; font-family: 'Share Tech Mono', monospace; width: 100%;
+        }
+        .cmd-list { max-height: 280px; overflow-y: auto; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+        .cmd-item {
+            padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between;
+            align-items: center; font-size: 0.9rem; color: var(--text-color); transition: background 0.2s;
+        }
+        .cmd-item:hover, .cmd-item.selecionado { background: var(--btn-bg); color: #fff; }
+        .cmd-shortcut { font-size: 0.75rem; font-family: 'Share Tech Mono', monospace; opacity: 0.7; }
+
+        /* --- TOOLTIP ESTILO TERMINAL FLUTUANTE (ASSISTENTE) --- */
+        #terminal-tooltip {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--header-bg);
+            border: 1px solid var(--h1-color);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--terminal-text);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            z-index: 9995;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(12px);
+            animation: fadeInTooltip 0.5s ease;
+            max-width: 280px;
+        }
+        @keyframes fadeInTooltip { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        #terminal-tooltip span.close-tip { cursor: pointer; color: var(--text-muted); font-weight: bold; margin-left: 6px; }
+        #terminal-tooltip span.close-tip:hover { color: var(--h3-color); }
 
         #btn-topo {
-            position: fixed; bottom: 20px; left: 20px; z-index: 9998;
+            position: fixed; bottom: 25px; left: 20px; z-index: 9998;
             background: var(--header-bg); color: var(--h1-color); border: 1px solid var(--header-border);
             width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -368,9 +515,9 @@
         }
         #btn-topo.visivel { opacity: 1; visibility: visible; }
 
-        #toast-container { position: fixed; bottom: 20px; right: 15px; left: 15px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
+        #toast-container { position: fixed; bottom: 85px; right: 15px; left: 15px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
         .toast {
-            background: var(--header-bg); color: var(--header-text); border: 1px solid var(--h1-color);
+            background: var(--header-bg); color: var(--text-color); border: 1px solid var(--h1-color);
             padding: 12px 18px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             font-weight: 600; font-size: 0.9rem; animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
             text-align: center; width: 100%; max-width: 380px; pointer-events: auto;
@@ -383,7 +530,7 @@
             text-align: center; 
             padding: 1rem; 
             border-top: 1px solid var(--header-border); 
-            color: var(--header-text); 
+            color: var(--text-muted); 
             font-size: 0.8rem; 
             background-color: var(--header-bg); 
             display: flex; 
@@ -413,7 +560,7 @@
             .badges-contato { flex-direction: row; flex-wrap: wrap; }
             .badge-contato { flex: 1; min-width: 200px; justify-content: flex-start; }
             button[type="submit"] { width: auto; align-self: flex-start; }
-            #toast-container { left: auto; right: 25px; bottom: 25px; align-items: flex-end; }
+            #toast-container { left: auto; right: 25px; bottom: 85px; align-items: flex-end; }
             .toast { text-align: left; }
             
             footer { 
@@ -433,45 +580,45 @@
     <canvas id="canvas-particulas"></canvas>
 
     <header>
-        <h3 class="logo" onclick="easterEggLogo()" title="Dica: Clique 5 vezes aqui!">&lt;Vitor Nascimento /&gt;</h3>
+        <h3 class="logo magnetic-el" onclick="easterEggLogo()" title="Dica: Clique 5 vezes aqui!">&lt;Vitor Nascimento /&gt;</h3>
         <div class="menu-topo-wrapper">
             <nav>
-                <a onclick="navigateTo('inicio')" ontouchend="navigateTo('inicio'); event.preventDefault();" id="link-inicio" class="ativo">Início</a>
-                <a onclick="navigateTo('sobre')" ontouchend="navigateTo('sobre'); event.preventDefault();" id="link-sobre">Sobre</a>
-                <a onclick="navigateTo('projetos')" ontouchend="navigateTo('projetos'); event.preventDefault();" id="link-projetos">Projetos</a>
-                <a onclick="navigateTo('contato')" ontouchend="navigateTo('contato'); event.preventDefault();" id="link-contato">Contato</a>
+                <a class="magnetic-el" onclick="navigateTo('inicio')" ontouchend="navigateTo('inicio'); event.preventDefault();" id="link-inicio" class="ativo">Início</a>
+                <a class="magnetic-el" onclick="navigateTo('sobre')" ontouchend="navigateTo('sobre'); event.preventDefault();" id="link-sobre">Sobre</a>
+                <a class="magnetic-el" onclick="navigateTo('projetos')" ontouchend="navigateTo('projetos'); event.preventDefault();" id="link-projetos">Projetos</a>
+                <a class="magnetic-el" onclick="navigateTo('contato')" ontouchend="navigateTo('contato'); event.preventDefault();" id="link-contato">Contato</a>
             </nav>
             <div class="controles-topo">
-                <button id="btn-audio" class="btn-acao-topo" onclick="toggleAudio()" title="Som"><span>🔊</span></button>
-                <button id="tema" class="btn-acao-topo" onclick="toggleTheme()" title="Tema">
+                <button id="btn-audio" class="btn-acao-topo magnetic-el" onclick="toggleAudio()" title="Som"><span>🔊</span></button>
+                <button id="tema" class="btn-acao-topo magnetic-el" onclick="toggleTheme()" title="Tema">
                     <span class="icone">☾</span> <span class="texto-btn">Escuro</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main>
+    <main id="main-content-parallax">
         <!-- 1. VISTA INÍCIO -->
         <section id="view-inicio" class="view active">
             <div class="status-badge" onclick="mudarStatusInterativo()" title="Clica para mudar o meu status atual!">
                 <span class="pulse-dot"></span> <span id="status-texto">Disponível para Estágio em TI (Tarde)</span> 🔄
             </div>
             
-            <h1>Seja bem-vindo ao meu portfólio</h1>
+            <h1 id="saudacao-titulo">Seja bem-vindo ao meu portfólio</h1>
             
             <div class="terminal-box">
                 <div class="terminal-linha"><span class="terminal-prompt">vitor@dev:~$</span> <span id="terminal-digitado" class="cursor-terminal"></span></div>
                 <div class="terminal-linha terminal-texto-principal">> Desenvolvedor Front-End & Técnico em TI empenhado em soluções web e suporte.</div>
             </div>
             
-            <p style="margin-top: 10px; font-size: 1.05rem; font-weight: 500;">Olá! Sou <strong>Vitor Nascimento dos Santos</strong>, estudante de Análise e Desenvolvimento de Sistemas na UNINOVE e desenvolvedor front-end.</p>
+            <p id="bio-digitada" style="margin-top: 10px; font-size: 1.05rem; font-weight: 500; min-height: 48px;"></p>
             
             <div class="card" style="margin-top: 18px;">
                 <h2>Objetivo Profissional</h2>
                 <p>Estudante focado em buscar oportunidade de <strong>Estágio em TI / Suporte Técnico (Help Desk) / Quality Assurance (QA)</strong>. Possuo sólida base em lógica de programação, resolução de chamados, triagem de erros e desenvolvimento web.</p>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
-                    <button onclick="navigateTo('projetos')" style="padding: 10px 18px; background: var(--btn-bg); color: var(--btn-text); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: filter 0.3s;">Ver Projetos & Mini-Game</button>
-                    <button onclick="navigateTo('contato')" style="padding: 10px 18px; background: transparent; color: var(--h1-color); border: 2px solid var(--h1-color); border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;">Entrar em Contato</button>
+                    <button class="magnetic-el" onclick="navigateTo('projetos')" style="padding: 10px 18px; background: var(--btn-bg); color: var(--btn-text); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: filter 0.3s;">Ver Projetos & Mini-Game</button>
+                    <button class="magnetic-el" onclick="navigateTo('contato')" style="padding: 10px 18px; background: transparent; color: var(--h1-color); border: 2px solid var(--h1-color); border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: all 0.3s;">Entrar em Contato</button>
                 </div>
             </div>
 
@@ -494,6 +641,33 @@
                 Tecnólogo em Análise e Desenvolvimento de Sistemas (ADS) — Início em abril/2026 (2 anos e meio).</p>
                 <p style="margin-top: 8px;"><strong>PROA Transforme-se (Parceria Serasa)</strong><br>
                 Capacitação técnica prática em Desenvolvimento Front-End (HTML5, CSS3, JavaScript).</p>
+            </div>
+
+            <div class="card">
+                <h2>📊 Estatísticas & Foco de Competências</h2>
+                <p>Nível estimado de proficiência nas tecnologias e áreas que estudo ativamente:</p>
+                <div class="skill-stats-container">
+                    <div class="skill-row">
+                        <div class="skill-info-bar"><span>JavaScript / DOM / Front-End</span><span>85%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-info-bar"><span>C# (.NET 8) & POO</span><span>80%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-info-bar"><span>HTML5 & CSS3 Moderno</span><span>90%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-info-bar"><span>Suporte Técnico, Hardware & QA</span><span>88%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 88%;"></div></div>
+                    </div>
+                    <div class="skill-row">
+                        <div class="skill-info-bar"><span>Git & GitHub Workflow</span><span>78%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 78%;"></div></div>
+                    </div>
+                </div>
             </div>
 
             <div class="card" style="text-align: center;">
@@ -540,10 +714,10 @@
             <p>Conheça os repositórios oficiais e desafia o mini-game Pong incorporado no portfólio:</p>
             
             <div class="filtros-container">
-                <button class="btn-filtro ativo" onclick="filtrarProjetos('todos', event)">Todos</button>
-                <button class="btn-filtro" onclick="filtrarProjetos('frontend', event)">Front-End</button>
-                <button class="btn-filtro" onclick="filtrarProjetos('sistemas', event)">Sistemas</button>
-                <button class="btn-filtro" onclick="filtrarProjetos('game', event)">🎮 Pong</button>
+                <button class="btn-filtro active magnetic-el" onclick="filtrarProjetos('todos', event)">Todos</button>
+                <button class="btn-filtro magnetic-el" onclick="filtrarProjetos('frontend', event)">Front-End</button>
+                <button class="btn-filtro magnetic-el" onclick="filtrarProjetos('sistemas', event)">Sistemas</button>
+                <button class="btn-filtro magnetic-el" onclick="filtrarProjetos('game', event)">🎮 Pong</button>
             </div>
 
             <div class="projetos-grid" id="grid-projetos">
@@ -552,7 +726,7 @@
                     <div class="projeto-tags">
                         <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
                     </div>
-                    <p>Aplicação web interativa desenvolvida com tema escuro/claro, navegação fluida em abas, partículas 3D, tilt 3D e mini-game.</p>
+                    <p>Aplicação web interativa desenvolvida com tema escuro/claro, navegação fluida em abas, partículas constelação 3D, tilt 3D e mini-game.</p>
                     <a href="https://github.com/vitorns-dev/portif-lio_oficial" target="_blank" class="projeto-link">Ver Repositório no GitHub &rarr;</a>
                 </div>
 
@@ -580,7 +754,7 @@
                     <div class="pong-container">
                         <div class="pong-barra-topo">
                             <span style="color: var(--h1-color); font-family: 'Share Tech Mono', monospace; font-size: 0.8rem;" id="pong-status-label">⏸️ Pausado</span>
-                            <button class="btn-pong-controle" onclick="togglePausarPong()" id="btn-pong-pausa">▶️ Iniciar / Pausa</button>
+                            <button class="btn-pong-controle magnetic-el" onclick="togglePausarPong()" id="btn-pong-pausa">▶️ Iniciar / Pausa</button>
                         </div>
                         <canvas id="pong-canvas" width="480" height="260"></canvas>
                         <div class="pong-controles-info">Comandos: [ W / S ] ou [ ↑ / ↓ ] | Pausa: [ Espaço ]</div>
@@ -595,15 +769,15 @@
             <p>Entre em contato para oportunidades de estágio em TI, Help Desk, Suporte Técnico ou QA:</p>
             
             <div class="badges-contato">
-                <a href="https://github.com/vitorns-dev" target="_blank" class="badge-contato">
+                <a href="https://github.com/vitorns-dev" target="_blank" class="badge-contato magnetic-el">
                     <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                     GitHub (vitorns-dev)
                 </a>
-                <a href="https://linkedin.com/in/vitor-nascimento-dos-santos-03b0a1417" target="_blank" class="badge-contato">
+                <a href="https://linkedin.com/in/vitor-nascimento-dos-santos-03b0a1417" target="_blank" class="badge-contato magnetic-el">
                     <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     LinkedIn
                 </a>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vitornsantos405@gmail.com" target="_blank" class="badge-contato" title="Gmail">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=vitornsantos405@gmail.com" target="_blank" class="badge-contato magnetic-el" title="Gmail">
                     <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     Enviar E-mail (Gmail)
                 </a>
@@ -626,12 +800,37 @@
                     <label for="mensagem">Mensagem:</label>
                     <textarea id="mensagem" rows="4" required placeholder="Escreva sua mensagem ou proposta de estágio..."></textarea>
                 </div>
-                <button type="submit">Enviar Mensagem</button>
+                <button type="submit" class="magnetic-el" onclick="criarEfeitoRipple(event)">Enviar Mensagem <span class="icone-foguete">🚀</span></button>
             </form>
         </section>
     </main>
 
-    <button id="btn-topo" onclick="voltarAoTopo()" title="Voltar ao topo">↑</button>
+    <!-- COMMAND PALETTE MODAL (CTRL + K) -->
+    <div id="cmd-overlay" onclick="fecharCommandPalette(event)">
+        <div class="cmd-modal" onclick="event.stopPropagation()">
+            <div class="cmd-input-box">
+                <span style="color: var(--h1-color); font-family: 'Share Tech Mono', monospace;">&gt;</span>
+                <input type="text" id="cmd-input" placeholder="Digite um comando (ex: Início, Tema, Pong, GitHub)..." oninput="filtrarComandos(this.value)">
+            </div>
+            <div class="cmd-list" id="cmd-list-items">
+                <div class="cmd-item" onclick="executarCmd('inicio')"><span>Ir para Início</span><span class="cmd-shortcut">1</span></div>
+                <div class="cmd-item" onclick="executarCmd('sobre')"><span>Ir para Sobre Mim & Skills</span><span class="cmd-shortcut">2</span></div>
+                <div class="cmd-item" onclick="executarCmd('projetos')"><span>Ver Projetos & Mini-Game Pong</span><span class="cmd-shortcut">3</span></div>
+                <div class="cmd-item" onclick="executarCmd('contato')"><span>Entrar em Contato / Formulário</span><span class="cmd-shortcut">4</span></div>
+                <div class="cmd-item" onclick="executarCmd('tema')"><span>Alternar Tema (Claro / Escuro)</span><span class="cmd-shortcut">T</span></div>
+                <div class="cmd-item" onclick="executarCmd('audio')"><span>Ativar / Desativar Efeitos Sonoros</span><span class="cmd-shortcut">S</span></div>
+                <div class="cmd-item" onclick="executarCmd('github')"><span>Abrir GitHub Oficial (vitorns-dev)</span><span class="cmd-shortcut">Git</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASSISTENTE FLUTUANTE / TOOLTIP ESTILO TERMINAL -->
+    <div id="terminal-tooltip">
+        <span id="tip-texto">💡 Pressiona Ctrl+K para abrir o menu de comandos!</span>
+        <span class="close-tip" onclick="fecharTooltip()">×</span>
+    </div>
+
+    <button id="btn-topo" class="magnetic-el" onclick="voltarAoTopo()" title="Voltar ao topo">↑</button>
     <div id="toast-container"></div>
 
     <footer>
@@ -668,6 +867,36 @@
             if(audioAtivo) tatearSom(600, 'triangle', 0.1);
         }
 
+        function carregarSaudacaoDinamica() {
+            const hora = new Date().getHours();
+            let cumprimento = "Olá!";
+            
+            if (hora >= 5 && hora < 12) {
+                cumprimento = "🌅 Bom dia!";
+            } else if (hora >= 12 && hora < 18) {
+                cumprimento = "☀️ Boa tarde!";
+            } else {
+                cumprimento = "🌙 Boa noite!";
+            }
+            
+            const elementoTitulo = document.getElementById('saudacao-titulo');
+            if (elementoTitulo) {
+                elementoTitulo.textContent = `${cumprimento} Seja bem-vindo ao meu portfólio`;
+            }
+        }
+
+        const textoBio = "Olá! Sou Vitor Nascimento dos Santos, estudante de Análise e Desenvolvimento de Sistemas na UNINOVE, programador C# e desenvolvedor front-end focado em criar experiências web modernas e funcionais.";
+        let indiceBio = 0;
+        function iniciarDigitacaoBio() {
+            const elBio = document.getElementById('bio-digitada');
+            if (!elBio) return;
+            if (indiceBio < textoBio.length) {
+                elBio.textContent += textoBio.charAt(indiceBio);
+                indiceBio++;
+                setTimeout(iniciarDigitacaoBio, 25);
+            }
+        }
+
         const estadosStatus = [
             "Disponível para Estágio em TI (Tarde)",
             "Em busca de Oportunidade em QA / Help Desk",
@@ -699,10 +928,11 @@
             });
         }
 
+        /* --- CANVAS DE PARTÍCULAS COM ATRAÇÃO SUAVE AO RATO --- */
         const canvasPart = document.getElementById('canvas-particulas');
         const ctxPart = canvasPart.getContext('2d');
         let estrelas = [];
-        const numEstrelas = 80;
+        const numEstrelas = 65;
         let anguloNebulosa = 0;
 
         let mouseX = -1000;
@@ -736,9 +966,9 @@
             estrelas.push({
                 x: Math.random() * canvasPart.width,
                 y: Math.random() * canvasPart.height,
-                vx: (Math.random() - 0.5) * 0.25,
-                vy: (Math.random() - 0.5) * 0.25,
-                radius: Math.random() * 1.8 + 0.4,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: Math.random() * 1.8 + 0.6,
                 alpha: Math.random() * 0.6 + 0.2
             });
         }
@@ -746,9 +976,14 @@
         function animarUniverso() {
             ctxPart.clearRect(0, 0, canvasPart.width, canvasPart.height);
             const isClaro = document.documentElement.classList.contains('claro');
+            const isSciFi = document.documentElement.classList.contains('sci-fi-ativo');
             
             const gradFundo = ctxPart.createLinearGradient(0, 0, canvasPart.width, canvasPart.height);
-            if (isClaro) {
+            if (isSciFi) {
+                gradFundo.addColorStop(0, '#021a12');
+                gradFundo.addColorStop(0.5, '#062e21');
+                gradFundo.addColorStop(1, '#010d09');
+            } else if (isClaro) {
                 gradFundo.addColorStop(0, '#f8fafc');
                 gradFundo.addColorStop(0.5, '#f1f5f9');
                 gradFundo.addColorStop(1, '#e2e8f0');
@@ -764,7 +999,7 @@
             ctxPart.lineWidth = 1;
             for (let i = 0; i < 2; i++) {
                 ctxPart.beginPath();
-                ctxPart.strokeStyle = isClaro ? `rgba(147, 51, 234, ${0.08 + i * 0.03})` : `rgba(168, 85, 247, ${0.15 + i * 0.05})`;
+                ctxPart.strokeStyle = isSciFi ? `rgba(52, 211, 153, ${0.2 + i * 0.08})` : (isClaro ? `rgba(147, 51, 234, ${0.08 + i * 0.03})` : `rgba(168, 85, 247, ${0.15 + i * 0.05})`);
                 for (let x = 0; x < canvasPart.width; x += 50) {
                     let y = canvasPart.height * 0.5 + Math.sin(x * 0.003 + anguloNebulosa + i) * 70 + Math.cos(x * 0.005 - anguloNebulosa) * 35;
                     if (x === 0) ctxPart.moveTo(x, y);
@@ -778,7 +1013,7 @@
                 if (p.alpha > 0) {
                     ctxPart.beginPath();
                     ctxPart.arc(p.x, p.y, p.raio, 0, Math.PI * 2);
-                    ctxPart.fillStyle = isClaro ? `rgba(147, 51, 234, ${p.alpha * 0.5})` : `rgba(192, 132, 252, ${p.alpha})`;
+                    ctxPart.fillStyle = isSciFi ? `rgba(52, 211, 153, ${p.alpha})` : (isClaro ? `rgba(147, 51, 234, ${p.alpha * 0.5})` : `rgba(192, 132, 252, ${p.alpha})`);
                     ctxPart.fill();
                 }
             });
@@ -791,23 +1026,49 @@
                 if (e.x < 0 || e.x > canvasPart.width) e.vx *= -1;
                 if (e.y < 0 || e.y > canvasPart.height) e.vy *= -1;
 
+                // ATRAÇÃO SUAVE AO RATO (Em vez de empurrar, elas aproximam-se levemente)
                 let distMouse = Math.hypot(mouseX - e.x, mouseY - e.y);
-                if (distMouse < 120) {
-                    let angulo = Math.atan2(e.y - mouseY, e.x - mouseX);
-                    e.x += Math.cos(angulo) * 1.2;
-                    e.y += Math.sin(angulo) * 1.2;
+                if (distMouse < 140) {
+                    let angulo = Math.atan2(mouseY - e.y, mouseX - e.x);
+                    e.x += Math.cos(angulo) * 0.35;
+                    e.y += Math.sin(angulo) * 0.35;
+                }
+
+                for (let j = i + 1; j < estrelas.length; j++) {
+                    let e2 = estrelas[j];
+                    let distPart = Math.hypot(e.x - e2.x, e.y - e2.y);
+                    if (distPart < 90) {
+                        ctxPart.beginPath();
+                        ctxPart.moveTo(e.x, e.y);
+                        ctxPart.lineTo(e2.x, e2.y);
+                        let alphaLinha = (1 - (distPart / 90)) * 0.25;
+                        ctxPart.strokeStyle = isSciFi ? `rgba(52, 211, 153, ${alphaLinha})` : (isClaro ? `rgba(147, 51, 234, ${alphaLinha * 0.6})` : `rgba(192, 132, 252, ${alphaLinha})`);
+                        ctxPart.lineWidth = 0.6;
+                        ctxPart.stroke();
+                    }
                 }
 
                 ctxPart.beginPath();
                 ctxPart.arc(e.x, e.y, e.radius, 0, Math.PI * 2);
-                ctxPart.fillStyle = isClaro ? `rgba(147, 51, 234, ${e.alpha})` : `rgba(192, 132, 252, ${e.alpha})`;
+                ctxPart.fillStyle = isSciFi ? `rgba(52, 211, 153, ${e.alpha})` : (isClaro ? `rgba(147, 51, 234, ${e.alpha})` : `rgba(192, 132, 252, ${e.alpha})`);
                 ctxPart.fill();
             }
             requestAnimationFrame(animarUniverso);
         }
         animarUniverso();
 
-        function processarMovimentoPointer(clientX, clientY) {
+        /* --- MAGNETIC BUTTONS & PARALLAX 3D --- */
+        document.addEventListener('mousemove', (e) => {
+            const clientX = e.clientX;
+            const clientY = e.clientY;
+
+            const mainContent = document.getElementById('main-content-parallax');
+            if(mainContent) {
+                const moveX = (clientX / window.innerWidth - 0.5) * 8;
+                const moveY = (clientY / window.innerHeight - 0.5) * 8;
+                mainContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+
             document.querySelectorAll('.card, .projeto-card').forEach(card => {
                 const rect = card.getBoundingClientRect();
                 const x = clientX - rect.left;
@@ -830,10 +1091,119 @@
                     card.classList.remove('ativo-touch');
                 }
             });
+
+            document.querySelectorAll('.magnetic-el').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const btnX = rect.left + rect.width / 2;
+                const btnY = rect.top + rect.height / 2;
+                const dist = Math.hypot(clientX - btnX, clientY - btnY);
+
+                if (dist < 70) {
+                    const offsetX = (clientX - btnX) * 0.35;
+                    const offsetY = (clientY - btnY) * 0.35;
+                    el.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                } else {
+                    el.style.transform = `translate(0px, 0px)`;
+                }
+            });
+        });
+
+        /* --- COMMAND PALETTE (CTRL + K) LOGIC --- */
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleCommandPalette(true);
+                return;
+            }
+            if (e.key === 'Escape') {
+                toggleCommandPalette(false);
+            }
+
+            if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+            if (e.key === '1') navigateTo('inicio');
+            if (e.key === '2') navigateTo('sobre');
+            if (e.key === '3') navigateTo('projetos');
+            if (e.key === '4') navigateTo('contato');
+            if (e.key.toLowerCase() === 't') toggleTheme();
+            if (e.key.toLowerCase() === 's') toggleAudio();
+
+            if (e.code === 'Space') {
+                e.preventDefault();
+                togglePausarPong();
+                return;
+            }
+            if (!pongGame.ativo) return;
+
+            if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') {
+                pongGame.jogador.y = Math.max(0, pongGame.jogador.y - 18);
+            }
+            if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') {
+                pongGame.jogador.y = Math.min(pongCanvas.height - pongGame.jogador.h, pongGame.jogador.y + 18);
+            }
+        });
+
+        function toggleCommandPalette(abrir) {
+            const overlay = document.getElementById('cmd-overlay');
+            if (abrir) {
+                overlay.classList.add('aberto');
+                document.getElementById('cmd-input').focus();
+                tatearSom(700, 'sine', 0.08);
+            } else {
+                overlay.classList.remove('aberto');
+                document.getElementById('cmd-input').value = '';
+                filtrarComandos('');
+            }
         }
 
-        document.addEventListener('mousemove', (e) => { processarMovimentoPointer(e.clientX, e.clientY); });
-        document.addEventListener('touchmove', (e) => { if (e.touches.length > 0) processarMovimentoPointer(e.touches[0].clientX, e.touches[0].clientY); });
+        function fecharCommandPalette(e) {
+            if (e.target.id === 'cmd-overlay') {
+                toggleCommandPalette(false);
+            }
+        }
+
+        function filtrarComandos(termo) {
+            termo = termo.toLowerCase();
+            const itens = document.querySelectorAll('.cmd-item');
+            itens.forEach(item => {
+                const texto = item.textContent.toLowerCase();
+                if (texto.includes(termo)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function executarCmd(acao) {
+            toggleCommandPalette(false);
+            if (acao === 'inicio' || acao === 'sobre' || acao === 'projetos' || acao === 'contato') {
+                navigateTo(acao);
+            } else if (acao === 'tema') {
+                toggleTheme();
+            } else if (acao === 'audio') {
+                toggleAudio();
+            } else if (acao === 'github') {
+                window.open('https://github.com/vitorns-dev', '_blank');
+            }
+        }
+
+        const dicasTerminal = [
+            "💡 Dica: Pressiona Ctrl+K para abrir o menu rápido de comandos!",
+            "🎯 Dica: Testa o mini-game Pong na aba de projetos!",
+            "☕ Dica: Pressiona as teclas 1, 2, 3 ou 4 para navegar instantaneamente!",
+            "✨ Dica: Clica 5 vezes na logo no topo para desbloquear o Modo Sci-Fi!"
+        ];
+        let indiceDica = 0;
+        setInterval(() => {
+            indiceDica = (indiceDica + 1) % dicasTerminal.length;
+            const tipEl = document.getElementById('tip-texto');
+            if(tipEl) tipEl.textContent = dicasTerminal[indiceDica];
+        }, 8000);
+
+        function fecharTooltip() {
+            const tip = document.getElementById('terminal-tooltip');
+            if(tip) tip.style.display = 'none';
+        }
 
         const textoTerminal = "git status --profile";
         let indiceTerminal = 0;
@@ -901,29 +1271,6 @@
                 tatearSom(300, 'sine', 0.1);
             }
         }
-
-        window.addEventListener('keydown', (e) => {
-            if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-            if (e.key === '1') navigateTo('inicio');
-            if (e.key === '2') navigateTo('sobre');
-            if (e.key === '3') navigateTo('projetos');
-            if (e.key === '4') navigateTo('contato');
-            if (e.key.toLowerCase() === 't') toggleTheme();
-
-            if (e.code === 'Space') {
-                e.preventDefault();
-                togglePausarPong();
-                return;
-            }
-            if (!pongGame.ativo) return;
-
-            if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') {
-                pongGame.jogador.y = Math.max(0, pongGame.jogador.y - 18);
-            }
-            if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') {
-                pongGame.jogador.y = Math.min(pongCanvas.height - pongGame.jogador.h, pongGame.jogador.y + 18);
-            }
-        });
 
         function atualizarPong() {
             if (!pongGame.ativo) return;
@@ -1014,6 +1361,26 @@
         }
         loopPong();
 
+        function criarEfeitoRipple(e) {
+            const botao = e.currentTarget;
+            const circulo = document.createElement('span');
+            const diametro = Math.max(botao.clientWidth, botao.clientHeight);
+            const raio = diametro / 2;
+
+            const rect = botao.getBoundingClientRect();
+            circulo.style.width = circulo.style.height = `${diametro}px`;
+            circulo.style.left = `${e.clientX - rect.left - raio}px`;
+            circulo.style.top = `${e.clientY - rect.top - raio}px`;
+            circulo.classList.add('ripple');
+
+            const circuloAntigo = botao.getElementsByClassName('ripple')[0];
+            if (circuloAntigo) {
+                circuloAntigo.remove();
+            }
+
+            botao.appendChild(circulo);
+        }
+
         function navigateTo(viewName) {
             tatearSom(550, 'sine', 0.08);
             document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
@@ -1031,6 +1398,7 @@
         function toggleTheme() {
             tatearSom(440, 'square', 0.08);
             const htmlEl = document.documentElement;
+            htmlEl.classList.remove('sci-fi-ativo');
             htmlEl.classList.toggle('claro');
             const isClaro = htmlEl.classList.contains('claro');
             localStorage.setItem('tema', isClaro ? 'claro' : 'escuro');
@@ -1055,9 +1423,13 @@
         let cliquesLogo = 0;
         function easterEggLogo() {
             cliquesLogo++;
-            tatearSom(880, 'sawtooth', 0.15);
+            tatearSom(880 + (cliquesLogo * 100), 'sawtooth', 0.12);
+            
             if (cliquesLogo === 5) {
-                mostrarToast("✨ [Modo Sci-Fi Ativado] Excelente foco em tecnologia 3D!");
+                document.documentElement.classList.toggle('sci-fi-ativo');
+                const ativo = document.documentElement.classList.contains('sci-fi-ativo');
+                mostrarToast(ativo ? "✨ [Modo Sci-Fi Ativado] Interface Cibernética Online!" : "🌙 [Modo Sci-Fi Desativado] Retornando ao tema padrão.");
+                tatearSom(1200, 'square', 0.3);
                 cliquesLogo = 0;
             }
         }
@@ -1101,7 +1473,9 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('btn-audio').innerHTML = "<span>🔇</span>";
+            carregarSaudacaoDinamica();
             setTimeout(iniciarDigitacaoTerminal, 300);
+            setTimeout(iniciarDigitacaoBio, 600);
 
             const temaSalvo = localStorage.getItem('tema');
             if (temaSalvo === 'claro') {
