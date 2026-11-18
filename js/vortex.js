@@ -137,7 +137,6 @@ export function iniciarVortex({ reduceMotion, som, toast, irPara }) {
     function paletaVortex() {
         if (root.classList.contains('sci-fi-ativo')) {
             return {
-                bg: ['#010c14', '#041e30', '#020912'],
                 vortexA: '56, 189, 248',
                 vortexB: '255, 209, 102',
                 gallifrey: '255, 209, 102',
@@ -148,7 +147,6 @@ export function iniciarVortex({ reduceMotion, som, toast, irPara }) {
         }
         if (root.classList.contains('claro')) {
             return {
-                bg: ['#f8fafc', '#eef2ff', '#e0e7ff'],
                 vortexA: '124, 58, 237',
                 vortexB: '2, 132, 199',
                 gallifrey: '124, 58, 237',
@@ -158,7 +156,6 @@ export function iniciarVortex({ reduceMotion, som, toast, irPara }) {
             };
         }
         return {
-            bg: ['#050811', '#0e0722', '#03040a'],
             vortexA: '168, 85, 247',
             vortexB: '56, 189, 248',
             gallifrey: '255, 209, 102',
@@ -171,12 +168,7 @@ export function iniciarVortex({ reduceMotion, som, toast, irPara }) {
     function frameVortex() {
         const P = paletaVortex();
         const isMobile = W < 768;
-        const grad = cx.createRadialGradient(W * 0.5, H * 0.5, 20, W * 0.5, H * 0.5, Math.max(W, H) * 0.8);
-        grad.addColorStop(0, P.bg[1]);
-        grad.addColorStop(0.6, P.bg[0]);
-        grad.addColorStop(1, P.bg[2]);
-        cx.fillStyle = grad;
-        cx.fillRect(0, 0, W, H);
+        cx.clearRect(0, 0, W, H);
 
         if (!vortexPausado && !reduceMotion) {
             tempoGlobal += 0.016;
