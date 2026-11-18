@@ -1,4 +1,5 @@
 :root {
+    color-scheme: dark;
     --bg-body: #050811;
     --text-color: #f1f5f9;
     --text-muted: #cbd5e1;
@@ -16,26 +17,27 @@
     --badge-color: #34d399;
     --status-text-color: #ffd166;
     --nav-indicator: #38bdf8;
-    --glass-badge: rgba(10, 14, 30, 0.25);
-    --card-bg: rgba(8, 12, 28, 0.22);
+    --glass-badge: rgba(10, 14, 30, 0.72);
+    --card-bg: rgba(8, 12, 28, 0.78);
     --card-border: rgba(168, 85, 247, 0.45);
     --cubo-bg: rgba(168, 85, 247, 0.14);
     --badge-bg: rgba(52, 211, 153, 0.1);
     --badge-border: #34d399;
-    --input-bg: rgba(12, 16, 36, 0.45);
+    --input-bg: rgba(12, 16, 36, 0.75);
     --input-border: #a855f7;
     --btn-bg: #9333ea;
     --btn-text: #ffffff;
     --spotlight-color: rgba(168, 85, 247, 0.22);
     --card-shadow-hover: 0 10px 30px rgba(168, 85, 247, 0.22);
-    --terminal-bg: rgba(8, 12, 26, 0.35);
+    --terminal-bg: rgba(8, 12, 26, 0.78);
     --terminal-text: #34d399;
     --terminal-body-color: #e2e8f0;
-    --modal-cv-bg: rgba(8, 12, 26, 0.95);
+    --modal-cv-bg: rgba(8, 12, 26, 0.96);
     --accent-rgb: 168, 85, 247;
 }
 
 html.claro {
+    color-scheme: light;
     --bg-body: #f8fafc;
     --text-color: #0f172a;
     --text-muted: #1e293b;
@@ -53,23 +55,24 @@ html.claro {
     --badge-color: #047857;
     --status-text-color: #9d174d;
     --nav-indicator: #38bdf8;
-    --glass-badge: rgba(255, 255, 255, 0.35);
-    --card-bg: rgba(255, 255, 255, 0.28);
+    --glass-badge: rgba(255, 255, 255, 0.85);
+    --card-bg: rgba(255, 255, 255, 0.88);
     --card-border: rgba(147, 51, 234, 0.4);
     --cubo-bg: rgba(147, 51, 234, 0.08);
     --badge-bg: rgba(5, 150, 105, 0.12);
-    --input-bg: rgba(255, 255, 255, 0.55);
+    --input-bg: rgba(255, 255, 255, 0.9);
     --input-border: #9333ea;
     --btn-bg: #7c3aed;
     --spotlight-color: rgba(147, 51, 234, 0.14);
     --card-shadow-hover: 0 10px 25px rgba(147, 51, 234, 0.18);
-    --terminal-bg: rgba(15, 23, 42, 0.45);
+    --terminal-bg: rgba(15, 23, 42, 0.88);
     --terminal-body-color: #f1f5f9;
     --modal-cv-bg: rgba(255, 255, 255, 0.97);
     --accent-rgb: 147, 51, 234;
 }
 
 html.sci-fi-ativo {
+    color-scheme: dark;
     --bg-body: #02121a !important;
     --text-color: #bae6fd !important;
     --text-muted: #7dd3fc !important;
@@ -80,13 +83,13 @@ html.sci-fi-ativo {
     --nav-link: #ffd166 !important;
     --nav-hover: #ffffff !important;
     --nav-indicator: #38bdf8 !important;
-    --card-bg: rgba(2, 22, 34, 0.24) !important;
+    --card-bg: rgba(2, 22, 34, 0.78) !important;
     --card-border: rgba(56, 189, 248, 0.6) !important;
     --spotlight-color: rgba(56, 189, 248, 0.25) !important;
     --header-bg: rgba(2, 18, 28, 0.96) !important;
     --header-border: rgba(56, 189, 248, 0.5) !important;
     --btn-bg: #0284c7 !important;
-    --glass-badge: rgba(2, 24, 38, 0.28) !important;
+    --glass-badge: rgba(2, 24, 38, 0.75) !important;
     --modal-cv-bg: rgba(2, 18, 28, 0.96) !important;
     --accent-rgb: 56, 189, 248 !important;
 }
@@ -205,7 +208,7 @@ h1 { color: var(--h1-color); font-size: 1.8rem; margin-bottom: 14px; font-family
 h2 { color: var(--h2-color); font-size: 1.25rem; margin-bottom: 10px; font-family: 'Philosopher', serif; text-shadow: 0 1px 6px rgba(0,0,0,0.5); }
 h3 { color: var(--h3-color); font-size: 1.15rem; margin-bottom: 10px; font-family: 'Philosopher', serif; text-shadow: 0 1px 6px rgba(0,0,0,0.5); }
 p { color: var(--text-muted); margin-bottom: 14px; line-height: 1.55; font-size: 0.98rem; text-shadow: 0 1px 4px rgba(0,0,0,0.45); }
-html.claro p, html.claro h2, html.claro h3 { text-shadow: none; }
+html.claro h1, html.claro p, html.claro h2, html.claro h3 { text-shadow: none; }
 strong { color: var(--text-color); }
 
 .gradient-text {
@@ -215,6 +218,8 @@ strong { color: var(--text-color); }
 
 .card, .projeto-card {
     background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 20px; margin-bottom: 18px;
     border-radius: 14px; border: 1px solid var(--card-border);
     position: relative; overflow: hidden; z-index: 5;
@@ -243,6 +248,8 @@ strong { color: var(--text-color); }
 
 .status-badge {
     display: inline-flex; align-items: center; gap: 8px; background: var(--glass-badge);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border: 1px solid var(--h2-color); padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;
     color: var(--status-text-color); margin-bottom: 14px; cursor: pointer; transition: transform 0.2s;
     box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.2); user-select: none; position: relative; z-index: 5;
@@ -255,7 +262,10 @@ strong { color: var(--text-color); }
 }
 
 .terminal-box {
-    background-color: var(--terminal-bg); border: 1px solid var(--h2-color); border-radius: 10px; overflow: hidden;
+    background-color: var(--terminal-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--h2-color); border-radius: 10px; overflow: hidden;
     font-family: 'Share Tech Mono', monospace; font-size: 0.88rem; color: var(--terminal-text);
     margin-bottom: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); position: relative; z-index: 5;
     transition: all 0.3s ease;
@@ -282,7 +292,10 @@ strong { color: var(--text-color); }
 .term-hint { color: var(--text-muted); font-size: 0.74rem; padding: 0 14px 10px; }
 
 .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 18px 0; position: relative; z-index: 5; }
-.stat { border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; text-align: center; background: var(--glass-badge); }
+.stat {
+    border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; text-align: center;
+    background: var(--glass-badge); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
 .stat b { display: block; font-family: 'Share Tech Mono', monospace; font-size: 1.6rem; color: var(--h1-color); }
 .stat span { font-size: 0.78rem; color: var(--text-muted); }
 
@@ -405,7 +418,7 @@ strong { color: var(--text-color); }
 .btn-todos-repos:hover { background: var(--card-bg); color: var(--h1-color); border-color: var(--h1-color); transform: translateY(-2px); }
 
 .pong-container {
-    background: rgba(6, 3, 14, 0.55); border: 1px solid var(--h1-color); border-radius: 12px; width: 100%;
+    background: rgba(6, 3, 14, 0.85); border: 1px solid var(--h1-color); border-radius: 12px; width: 100%;
     display: flex; flex-direction: column; align-items: center; padding: 12px; position: relative;
 }
 .pong-barra-topo { display: flex; justify-content: space-between; width: 100%; margin-bottom: 8px; align-items: center; flex-wrap: wrap; gap: 6px; }
@@ -421,6 +434,7 @@ strong { color: var(--text-color); }
 .badges-contato { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 14px; position: relative; z-index: 5; }
 .badge-contato {
     display: inline-flex; align-items: center; gap: 10px; background: var(--glass-badge); color: var(--text-color);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
     border: 1px solid var(--card-border); padding: 12px 18px; border-radius: 25px; font-weight: 600; font-size: 0.9rem;
     text-decoration: none; cursor: pointer; justify-content: center; font-family: inherit; transition: border-color 0.3s, color 0.3s;
 }
@@ -485,7 +499,7 @@ button[type="submit"]:hover .icone-foguete { display: inline-block; animation: l
 
 #terminal-tooltip {
     position: fixed; bottom: 16px; right: 14px;
-    background: rgba(8, 12, 26, 0.86);
+    background: rgba(8, 12, 26, 0.92);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(192, 132, 252, 0.45);
@@ -493,7 +507,7 @@ button[type="submit"]:hover .icone-foguete { display: inline-block; animation: l
     font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; line-height: 1.35;
     color: var(--terminal-text); box-shadow: 0 6px 20px rgba(0,0,0,0.45); z-index: 9995;
     display: flex; align-items: center; gap: 6px; max-width: 245px;
-    opacity: 0.92;
+    opacity: 0.95;
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
 }
 #terminal-tooltip.oculto-tip {
