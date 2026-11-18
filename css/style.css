@@ -94,7 +94,14 @@ html.sci-fi-ativo {
     --accent-rgb: 56, 189, 248 !important;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    forced-color-adjust: none;
+    -webkit-forced-color-adjust: none;
+}
+
 html { scroll-behavior: smooth; }
 
 html, body {
@@ -116,7 +123,15 @@ body {
 
 :focus-visible { outline: 2px solid var(--h2-color); outline-offset: 3px; border-radius: 6px; }
 
-#canvas-vortex { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; }
+#canvas-vortex {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    filter: none !important;
+}
 
 #scroll-progress {
     position: fixed; top: 0; left: 0; height: 3px; width: 0%;
