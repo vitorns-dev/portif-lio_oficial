@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vitor Nascimento | Desenvolvimento de Software, QA &amp; Suporte TI</title>
     <meta name="description" content="Portfólio de Vitor Nascimento dos Santos: estudante de ADS na UNINOVE (2º Semestre) e Front-End no Instituto PROA, em busca de estágio em TI, Desenvolvimento de Software, QA ou Suporte Técnico em São Paulo.">
-    <meta name="theme-color" content="#050811">
-    <meta name="color-scheme" content="dark light">
+    <meta id="meta-theme-color" name="theme-color" content="#050811">
+    <meta id="meta-color-scheme" name="color-scheme" content="dark">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%239333ea'/%3E%3Ctext x='32' y='43' font-size='28' text-anchor='middle' fill='white' font-family='monospace' font-weight='bold'%3EVN%3C/text%3E%3C/svg%3E">
 
     <script>
-        try { if (localStorage.getItem('tema') === 'claro') document.documentElement.classList.add('claro'); } catch (e) {}
+        try {
+            const temaSalvo = localStorage.getItem('tema');
+            const prefereEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const usarClaro = temaSalvo === 'claro' || (!temaSalvo && !prefereEscuro);
+            if (usarClaro) {
+                document.documentElement.classList.add('claro');
+                document.getElementById('meta-color-scheme')?.setAttribute('content', 'only light');
+                document.getElementById('meta-theme-color')?.setAttribute('content', '#f8fafc');
+            }
+        } catch (e) {}
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

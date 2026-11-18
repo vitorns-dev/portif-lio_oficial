@@ -7,6 +7,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const root = document.documentElement;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sistemaEscuro = window.matchMedia('(prefers-color-scheme: dark)');
 const safeGet = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
 const safeSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 
@@ -45,7 +46,16 @@ function toast(msg) {
     setTimeout(() => t.remove(), 3000);
 }
 
-// Tema
+// Tema & Sincronização com o Sistema
+function sincronizarColorScheme() {
+    const claro = root.classList.contains('claro');
+    const sciFi = root.classList.contains('sci-fi-ativo');
+    const metaScheme = $('#meta-color-scheme');
+    const metaTheme = $('#meta-theme-color');
+    if (metaScheme) metaScheme.setAttribute('content', claro ? 'only light' : 'dark');
+    if (metaTheme) metaTheme.setAttribute('content', claro ? '#f8fafc' : (sciFi ? '#02121a' : '#050811'));
+}
+
 function atualizarBotaoTema() {
     const claro = root.classList.contains('claro');
     const btnTema = $('#tema');
@@ -53,11 +63,30 @@ function atualizarBotaoTema() {
         btnTema.innerHTML = claro ? '<span>☀</span> <span class="texto-btn">Claro</span>' : '<span>☾</span> <span class="texto-btn">Escuro</span>';
     }
 }
+
+function aplicarTemaSistema() {
+    const temaSalvo = safeGet('tema');
+    const usarClaro = temaSalvo === 'claro' || (!temaSalvo && !sistemaEscuro.matches);
+    root.classList.toggle('claro', usarClaro);
+    sincronizarColorScheme();
+    atualizarBotaoTema();
+}
+
+sistemaEscuro.addEventListener('change', e => {
+    if (!safeGet('tema')) {
+        root.classList.remove('sci-fi-ativo');
+        root.classList.toggle('claro', !e.matches);
+        sincronizarColorScheme();
+        atualizarBotaoTema();
+    }
+});
+
 function toggleTheme() {
     som(440, 'square', 0.08);
     root.classList.remove('sci-fi-ativo');
     root.classList.toggle('claro');
     safeSet('tema', root.classList.contains('claro') ? 'claro' : 'escuro');
+    sincronizarColorScheme();
     atualizarBotaoTema();
 }
 
@@ -154,6 +183,13 @@ const pong = iniciarPong({ som, confete: vortex.confete, safeGet, safeSet, isVie
 function ativarSciFi(forcar) {
     const on = forcar === undefined ? !root.classList.contains('sci-fi-ativo') : forcar;
     root.classList.toggle('sci-fi-ativo', on);
+    if (on) {
+        root.classList.remove('claro');
+        sincronizarColorScheme();
+        atualizarBotaoTema();
+    } else {
+        aplicarTemaSistema();
+    }
     vortex.impulso(2.0);
     toast(on ? '✨ [Modo TARDIS] Vórtice Temporal em carga máxima!' : '🌙 Tema padrão restaurado.');
     som(660, 'triangle', 0.15);
@@ -490,7 +526,7 @@ $('#status-badge').addEventListener('keydown', e => { if (e.key === 'Enter' || e
 
 // Boot Inicial
 montarConteudo();
-atualizarBotaoTema();
+aplicarTemaSistema();
 saudacao();
 mostrarView(location.hash.slice(1));
 digitar($('#term-auto'), 'tardis --scan-portfolio', 65, () => {
