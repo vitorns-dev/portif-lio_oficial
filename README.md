@@ -59,10 +59,10 @@ Como o projeto utiliza **ES Modules** (`type="module"`), é necessário rodá-lo
 
 ```bash
 # 1. Clone o repositório
-git clone [https://github.com/vitorns-dev/seu-repositorio.git](https://github.com/vitorns-dev/seu-repositorio.git)
+git clone [https://github.com/vitorns-dev/portif-lio_oficial.git](https://github.com/vitorns-dev/portif-lio_oficial.git)
 
 # 2. Acesse a pasta do projeto
-cd seu-repositorio
+cd portif-lio_oficial
 
 # 3. Inicie um servidor local (exemplo com Python ou extensão Live Server do VS Code)
 python -m http.server 5500
