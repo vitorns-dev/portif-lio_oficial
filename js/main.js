@@ -125,7 +125,44 @@ $('#btn-imprimir-cv').addEventListener('click', () => window.print());
     });
 });
 
-// Navegação SPA
+// Navegação SPA & Voo Aleatório da TARDIS
+let primeiraView = true;
+let ultimoTrajetoTardis = '';
+const TRAJETOS_TARDIS = [
+    'voando-direita',
+    'voando-esquerda',
+    'voando-baixo-cima',
+    'voando-cima-baixo',
+    'voando-diagonal-direita',
+    'voando-diagonal-esquerda'
+];
+
+function voarTardis() {
+    if (reduceMotion) return;
+    const tardis = $('#tardis-voando');
+    if (!tardis) return;
+
+    tardis.classList.remove(...TRAJETOS_TARDIS);
+    void tardis.offsetWidth;
+
+    const opcoes = TRAJETOS_TARDIS.filter(t => t !== ultimoTrajetoTardis);
+    const trajeto = opcoes[Math.floor(Math.random() * opcoes.length)];
+    ultimoTrajetoTardis = trajeto;
+
+    if (trajeto === 'voando-direita' || trajeto === 'voando-esquerda') {
+        tardis.style.top = Math.floor(15 + Math.random() * 52) + '%';
+        tardis.style.left = '0px';
+    } else if (trajeto === 'voando-baixo-cima' || trajeto === 'voando-cima-baixo') {
+        tardis.style.top = '0px';
+        tardis.style.left = Math.floor(15 + Math.random() * 65) + '%';
+    } else {
+        tardis.style.top = '0px';
+        tardis.style.left = '0px';
+    }
+
+    tardis.classList.add(trajeto);
+}
+
 function mostrarView(nome, destacarProjetoId = null) {
     if (!VIEWS.includes(nome)) nome = 'inicio';
     viewAtual = nome;
@@ -144,6 +181,8 @@ function mostrarView(nome, destacarProjetoId = null) {
     })[nome];
 
     vortex.impulso(1.0);
+    if (!primeiraView) voarTardis();
+    primeiraView = false;
 
     if (nome === 'sobre') animarSkills();
     if (nome === 'inicio') animarContadores();
@@ -152,6 +191,7 @@ function mostrarView(nome, destacarProjetoId = null) {
     if (nome === 'projetos' && destacarProjetoId) {
         $$('.btn-filtro').forEach(b => b.classList.toggle('ativo', b.dataset.filtro === 'todos'));
         $$('.projeto-card').forEach(c => c.classList.remove('oculto', 'destaque-teletransporte'));
+        atualizarContadorProjetos();
         const cardAlvo = document.getElementById(destacarProjetoId);
         if (cardAlvo) {
             setTimeout(() => {
@@ -203,6 +243,28 @@ const terminal = iniciarTerminal({
     ativarSciFi, som
 });
 
+// Estado de Energia Temporal (Curtidas) & Contador de Projetos
+let curtidasProjetos = {};
+try {
+    curtidasProjetos = JSON.parse(safeGet('curtidas_projetos') || '{}') || {};
+} catch (e) {
+    curtidasProjetos = {};
+}
+
+function salvarCurtidas() {
+    safeSet('curtidas_projetos', JSON.stringify(curtidasProjetos));
+}
+
+function atualizarContadorProjetos() {
+    const el = $('#contador-projetos');
+    if (!el) return;
+    const total = $$('.projeto-card').length;
+    const visiveis = $$('.projeto-card:not(.oculto)').length;
+    el.innerHTML = visiveis === total
+        ? `📡 <strong>${visiveis}</strong> ${visiveis === 1 ? 'projeto ativo' : 'projetos ativos'} no radar`
+        : `📡 Exibindo <strong>${visiveis}</strong> de <strong>${total}</strong> projetos`;
+}
+
 // Conteúdo Dinâmico e Animações
 function montarConteudo() {
     $('#skill-bars').innerHTML = SKILLS.map(s => `
@@ -212,15 +274,48 @@ function montarConteudo() {
     $('#soft-skills').innerHTML = SOFT.map(s => `<div class="skill-item">${s}</div>`).join('');
 
     const grid = $('#grid-projetos');
-    const cards = PROJETOS.map(p => `
+    const cards = PROJETOS.map(p => {
+        const qtd = Number(curtidasProjetos[p.id]) || 0;
+        return `
         <div id="${p.id}" class="projeto-card tilt" data-categoria="${p.cat}">
             <h3>${p.t}</h3>
             <div class="projeto-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
             <p>${p.d}</p>
-            <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="projeto-link">Ver repositório no GitHub &rarr;</a>
-        </div>`).join('');
+            <div class="projeto-footer">
+                <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="projeto-link">Ver repositório no GitHub &rarr;</a>
+                <button type="button" class="btn-like-projeto${qtd > 0 ? ' curtido' : ''}" data-id="${p.id}" aria-label="Enviar energia temporal para ${p.t}" title="Enviar Energia Temporal">
+                    <span class="like-icone">✦</span>
+                    <span class="like-qtd">${qtd}</span>
+                </button>
+            </div>
+        </div>`;
+    }).join('');
     grid.insertAdjacentHTML('afterbegin', cards);
+
+    const filtrosEl = $('.filtros-container');
+    if (filtrosEl && !$('#contador-projetos')) {
+        filtrosEl.insertAdjacentHTML('afterend', '<p id="contador-projetos" class="contador-projetos" aria-live="polite"></p>');
+    }
+    atualizarContadorProjetos();
 }
+
+$('#grid-projetos').addEventListener('click', e => {
+    const btn = e.target.closest('.btn-like-projeto');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    const atual = (Number(curtidasProjetos[id]) || 0) + 1;
+    curtidasProjetos[id] = atual;
+    salvarCurtidas();
+
+    $('.like-qtd', btn).textContent = atual;
+    btn.classList.add('curtido');
+    btn.classList.remove('pulso');
+    void btn.offsetWidth;
+    btn.classList.add('pulso');
+
+    som(640 + Math.min(atual, 8) * 35, 'triangle', 0.09);
+    if (atual === 1) toast('✦ Energia Temporal enviada para o projeto!');
+});
 
 function contar(el, alvo, dur = 1100, sufixo = '') {
     if (reduceMotion) { el.textContent = alvo + sufixo; return; }
@@ -352,6 +447,7 @@ $$('.btn-filtro').forEach(btn => btn.addEventListener('click', () => {
     $$('.btn-filtro').forEach(b => b.classList.remove('ativo')); btn.classList.add('ativo');
     const f = btn.dataset.filtro;
     $$('.projeto-card').forEach(c => c.classList.toggle('oculto', !(f === 'todos' || c.dataset.categoria === f)));
+    atualizarContadorProjetos();
 }));
 
 // Paleta de Comandos (Ctrl+K)
